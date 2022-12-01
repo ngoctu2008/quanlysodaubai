@@ -1,0 +1,7 @@
+[Thu, 01 Dec 2022 12:23:10 +0700] [localhost] [::1] [Error(1): Uncaught PDOException: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined in D:\xampp\htdocs\quanlysodaubai\modules\quanlysodaubai\admin\addstudent.php:111
+Stack trace:
+#0 D:\xampp\htdocs\quanlysodaubai\modules\quanlysodaubai\admin\addstudent.php(111): PDOStatement->bindParam(':anhdaidien', 'abc', 2)
+#1 D:\xampp\htdocs\quanlysodaubai\admin\index.php(183): require('D:\\xampp\\htdocs...')
+#2 {main}
+  thrown] [FILE: /modules/quanlysodaubai/admin/addstudent.php] [LINE: 111]
+[Thu, 01 Dec 2022 13:00:14 +0700] [localhost] [::1] [Notice(8): Undefined index: birthday] [FILE: /modules/quanlysodaubai/admin/addstudent.php] [LINE: 66]

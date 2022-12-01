@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cms>
+	<name><![CDATA[NukeViet CMS 4.4.05]]></name>
+	<version><![CDATA[4.4.05]]></version>
+	<date><![CDATA[Sun, 19 Jun 2022 17:00:00 GMT]]></date>
+	<message><![CDATA[NukeViet 4.4.05 là phiên bản tiếp theo của thế hệ 4.4. Phiên bản này tập trung xử lý lỗi còn tồn tại và tối ưu hệ thống]]></message>
+	<link><![CDATA[https&#x3A;&#x002F;&#x002F;nukeviet.vn&#x002F;]]></link>
+	<updateable><![CDATA[4.4.05]]></updateable>
+	<updatepackage><![CDATA[38]]></updatepackage>
+</cms>
