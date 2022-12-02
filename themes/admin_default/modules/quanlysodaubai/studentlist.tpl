@@ -25,7 +25,7 @@
                 <td>{DATA.anhdaidien}</td>
                 <td class="text-center">
                     <a href="{DATA.url_edit}" class="btn btn-default btn-xs"><i class="fa fa-fw fa-edit"></i>{GLANG.edit}</a>
-                    <a class="btn btn-danger btn-xs" href="javascript:void(0);" onclick="nv_del_content({DATA.malop}, '{DATA.checksess}')"><i class="fa fa-fw fa-trash"></i>{GLANG.delete}</a>
+                    <a class="btn btn-danger btn-xs" href="javascript:void(0);" onclick="nv_del_student({DATA.mahocsinh}, {DATA.malop}, '{DATA.checksess}')"><i class="fa fa-fw fa-trash"></i>{GLANG.delete}</a>
                 </td>
             </tr>
             <!-- END: loop -->

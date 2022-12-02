@@ -20,8 +20,10 @@ $allow_func = array(
     'subjectlist',
     'teacherlist',
     'addstudent',
-    'addclass',
+    'addclass',   
     'addsubject',
+    'delstudent',
+    'delclass',
     'delsubject',
     'del'
 );
