@@ -60,3 +60,10 @@ $lang_module['delete_unsuccess'] = 'Có lỗi trong quá trình xóa dữ liệu
 $lang_module['sex0'] = 'Không xác định';
 $lang_module['sex1'] = 'Nam';
 $lang_module['sex2'] = 'Nữ';
+$lang_module['sex2'] = 'Nữ';
+
+$lang_module['ppctr'] = 'Phân Phối Chương Trinhf';
+$lang_module['namhoc'] = 'Năm học';
+
+
+
