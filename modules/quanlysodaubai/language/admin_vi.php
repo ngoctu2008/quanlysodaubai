@@ -63,8 +63,6 @@ $lang_module['sex2'] = 'Nữ';
 
 $lang_module['subject'] = 'Tên môn học';
 
-$lang_module['ppctr'] = 'Phân Phối Chương Trinhf';
-$lang_module['namhoc'] = 'Năm học';
 
 
 

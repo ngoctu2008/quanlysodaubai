@@ -32,7 +32,7 @@ PRIMARY KEY (id)
 ) ENGINE=MyISAM;";
 
 $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_classlist (
-maLop int(11) NOT NULL,
+maLop int(11) NOT NULL AUTO_INCREMENT,
 maGVCN int(11) DEFAULT NULL,
 tenLop varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
 khoi int(2) NOT NULL,
@@ -40,7 +40,7 @@ PRIMARY KEY (maLop)
 ) ENGINE=MyISAM;";
 
 $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_studentlist (
-maHocSinh int(11) NOT NULL,
+maHocSinh int(11) NOT NULL AUTO_INCREMENT,
 maLop int(11) DEFAULT NULL,
 hoTen varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
 ngaySinh int(11) NOT NULL,

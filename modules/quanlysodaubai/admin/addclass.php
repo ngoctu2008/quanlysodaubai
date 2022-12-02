@@ -24,7 +24,7 @@ $xtpl->assign('GLANG', $lang_global);
 if ($classlistid) {
     $page_title = $lang_module['editclass'];
     $arrayteacher=[];
-    $queryteacher = $db->query('SELECT * FROM nv4_users WHERE group_id = 4 ORDER BY last_name ASC');
+    $queryteacher = $db->query('SELECT * FROM nv4_users WHERE group_id = 13 ORDER BY last_name ASC');
 
     while ($row = $queryteacher->fetch()) {
         $arrayteacher[$row['userid']] = $row;
@@ -85,7 +85,7 @@ else {
     $page_title = $lang_module['addclass'];
     $array=[];
     // Gọi csdl để lấy dữ liệu
-    $queryteacher = $db->query('SELECT * FROM nv4_users WHERE group_id = 4 ORDER BY last_name ASC');
+    $queryteacher = $db->query('SELECT * FROM nv4_users WHERE group_id = 13 ORDER BY last_name ASC');
     // đổ dữ liệu
     $i =0;
     $selected;
@@ -141,23 +141,21 @@ else {
 }
 
 
-// $arrclass = [];
-// if ($classlistid) {
-//     // Gọi csdl để lấy dữ liệu
-//     $queryteacher = $db->query('SELECT * FROM nv4_users WHERE group_id = 4 ORDER BY last_name ASC');
-//     // đổ dữ liệu
-//     $i =0;
-//     $selected;
-//     while ($row = $queryteacher->fetch()) {
-//         $arrclass[$row['userid']] = $row;
-//         if($i ==0)
-//         {
-//             $selected = $row['userid'];
-//         }
-//     }
-// }
-
-
+$arrclass = [];
+if ($classlistid) {
+    // Gọi csdl để lấy dữ liệu
+    $queryteacher = $db->query('SELECT * FROM nv4_users WHERE group_id = 13 ORDER BY last_name ASC');
+    // đổ dữ liệu
+    $i =0;
+    $selected;
+    while ($row = $queryteacher->fetch()) {
+        $arrclass[$row['userid']] = $row;
+        if($i ==0)
+        {
+            $selected = $row['userid'];
+        }
+    }
+}
 
 
 
