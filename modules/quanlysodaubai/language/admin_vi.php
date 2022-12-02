@@ -62,8 +62,4 @@ $lang_module['sex2'] = 'Nữ';
 $lang_module['sex2'] = 'Nữ';
 
 $lang_module['subject'] = 'Tên môn học';
-
-
-
-
-
+$lang_module['admin_phap'] = 'Pháp tới đây';
