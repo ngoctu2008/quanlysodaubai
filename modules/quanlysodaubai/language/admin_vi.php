@@ -23,6 +23,7 @@ $lang_module['setupinfo'] = 'Thiết lập thông tin';
 $lang_module['classlist'] = 'Danh sách lớp học';
 $lang_module['studentlist'] = 'Danh sách học sinh';
 $lang_module['teacherlist'] = 'Danh sách giáo viên';
+$lang_module['subjectlist'] = 'Danh sách môn học';
 $lang_module['addclass'] = 'Thêm lớp học';
 $lang_module['editclass'] = 'Chỉnh sửa lớp học';
 
@@ -49,19 +50,17 @@ $lang_module['sex'] = 'Giới Tính';
 $lang_module['numberabsent'] = 'Số tiết vắng';
 $lang_module['avatar'] = 'Ảnh đại diện';
 
-
 $lang_module['addstudent'] = 'Thêm mới học sinh';
 $lang_module['editstudent'] = 'Chỉnh sửa học sinh';
 
 $lang_module['delete_success'] = 'Đã xóa thành công !';
 $lang_module['delete_unsuccess'] = 'Có lỗi trong quá trình xóa dữ liệu !';
 
-
 $lang_module['sex0'] = 'Không xác định';
 $lang_module['sex1'] = 'Nam';
 $lang_module['sex2'] = 'Nữ';
 
-
+$lang_module['subject'] = 'Tên môn học';
 
 
 

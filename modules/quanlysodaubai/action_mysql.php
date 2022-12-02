@@ -17,6 +17,7 @@ $sql_drop_module = array();
 $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_setupinfo;";
 $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_classlist;";
 $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_studentlist;";
+$sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_subjectlist;";
 
 $sql_create_module = $sql_drop_module;
 
@@ -48,3 +49,10 @@ soTietNghi int(11) NOT NULL DEFAULT 0,
 anhDaiDien varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
 PRIMARY KEY (maHocSinh)
 ) ENGINE=MyISAM;";
+
+$sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_subjectlist (
+    maMonHoc int(11) NOT NULL AUTO_INCREMENT,
+    tenMonHoc varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+    PRIMARY KEY (maMonHoc)
+    ) ENGINE=MyISAM;";
+    

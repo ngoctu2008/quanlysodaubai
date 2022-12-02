@@ -17,9 +17,11 @@ $allow_func = array(
     'setupinfo',
     'classlist',
     'studentlist',
+    'subjectlist',
     'teacherlist',
     'addclass',
-    'addstudent',
+    'addsubject',
+    'delsubject',
     'del'
 );
 

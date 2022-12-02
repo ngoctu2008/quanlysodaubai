@@ -18,6 +18,8 @@ $submenu['classlist'] = $lang_module['classlist'];
 // $submenu['studentlist'] = $lang_module['studentlist'];
 // $submenu['teacherlist'] = $lang_module['teacherlist'];
 
+$submenu['subjectlist'] = $lang_module['subjectlist'];
+
 // if (defined('NV_IS_SPADMIN')) {
 // 	$submenu['config'] = $lang_module['config'];
 // }
