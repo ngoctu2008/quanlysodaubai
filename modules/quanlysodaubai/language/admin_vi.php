@@ -12,7 +12,7 @@
 if (!defined('NV_ADMIN') or !defined('NV_MAINFILE')) {
     die('Stop!!!');
 }
-
+$lang_module['main'] = 'Quản lý sổ đầu bài';
 $lang_translator['author'] = 'VINADES.,JSC (contact@vinades.vn)';
 $lang_translator['createdate'] = '04/03/2010, 15:22';
 $lang_translator['copyright'] = '@Copyright (C) 2012 VINADES.,JSC. All rights reserved';
@@ -60,8 +60,3 @@ $lang_module['delete_unsuccess'] = 'Có lỗi trong quá trình xóa dữ liệu
 $lang_module['sex0'] = 'Không xác định';
 $lang_module['sex1'] = 'Nam';
 $lang_module['sex2'] = 'Nữ';
-
-
-
-
-
