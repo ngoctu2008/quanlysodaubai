@@ -18,6 +18,9 @@ $studentid = $nv_Request->get_int('studentid', 'post,get');
 $xtpl = new XTemplate('addstudent.tpl', NV_ROOTDIR . '/themes/' . $global_config['module_theme'] . '/modules/' . $module_file);
 $xtpl->assign('LANG', $lang_module);
 $xtpl->assign('GLANG', $lang_global);
+$xtpl->assign('NV_UPLOADS_DIR', NV_UPLOADS_DIR);
+$xtpl->assign('UPLOAD_CURRENT', NV_UPLOADS_DIR . '/' . $module_upload . '/' . date("Y_m"));
+$xtpl->assign('module_name', $module_name);
 
 if ($studentid) {
     // chinh sua 
