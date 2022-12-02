@@ -39,7 +39,7 @@ $xtpl->assign('PAGE_ADDSTUDENT', $page_addstudent);
 if(!empty($array)) { 
     $i = 1;
     foreach ($array as $value) {
-
+        
         $value['stt'] = $i++;
         $value['tenlop'] = $dataclass['tenlop'];
         $value['ngaysinh'] = nv_date('d/m/Y', $value['ngaysinh']);
