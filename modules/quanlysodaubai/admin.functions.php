@@ -28,7 +28,8 @@ $allow_func = array(
     'del',
     'manageheadbook',
     'addheadbook',
-    'delheadbook'
+    'delheadbook',
+    'import_ppct'
 );
 
 define('NV_IS_FILE_ADMIN', true);

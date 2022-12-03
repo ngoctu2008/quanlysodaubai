@@ -16,6 +16,7 @@ $submenu['setupinfo'] = $lang_module['setupinfo'];
 $submenu['classlist'] = $lang_module['classlist'];
 $submenu['subjectlist'] = $lang_module['subjectlist'];
 $submenu['manageheadbook'] = $lang_module['manage_headbook'];
+$submenu['import_ppct'] = $lang_module['import_ppct'];
 
 // if (defined('NV_IS_SPADMIN')) {
 // 	$submenu['config'] = $lang_module['config'];

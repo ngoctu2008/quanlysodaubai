@@ -26,7 +26,7 @@ $lang_module['teacherlist'] = 'Danh sách giáo viên';
 $lang_module['subjectlist'] = 'Danh sách môn học';
 $lang_module['addclass'] = 'Thêm lớp học';
 $lang_module['editclass'] = 'Chỉnh sửa lớp học';
-
+$lang_module['import_ppct'] = 'Phân phối chương trình';
 
 $lang_module['schoolname'] = 'Tên trường';
 $lang_module['roomname'] = 'Tên phòng';
@@ -109,6 +109,49 @@ $lang_module['day5'] = 'Thứ 5';
 $lang_module['day6'] = 'Thứ 6';
 $lang_module['day7'] = 'Thứ 7';
 $lang_module['day8'] = 'Chủ Nhật';
+
+//Phân phối chương trình
+
+$lang_module['import'] = 'Import';
+$lang_module['show_ppct'] = 'Xem chương trình';
+$lang_module['show_all'] = 'Xem tất cả';
+$lang_module['del_ppct'] = 'Xóa chương trình';
+$lang_module['del_all'] = 'Xóa tất cả';
+
+$lang_module['upload_file_excel'] = 'Chọn file Excel';
+$lang_module['require_select_correct_file'] = 'File phải đúng định dạng theo mẫu';
+$lang_module['here'] = 'tại đây';
+$lang_module['error_cannot_read_file'] = 'Lỗi không thể đọc file';
+$lang_module['error_upload_file'] = 'Lỗi upload file';
+$lang_module['error_dont_have_file'] = 'Vui lòng chọn file';
+$lang_module['error_delete'] = 'Chưa xóa được dữ liệu';
+$lang_module['error_delete_null'] = 'Không tìm thấy dữ liệu';
+$lang_module['import_success'] = 'Import thành công !';
+$lang_module['delete_success'] = 'Xóa thành công !';
+$lang_module['config'] = 'Cấu hình';
+
+$lang_module['namhoc'] = 'Năm học';
+$lang_module['khoi'] = 'Khối';
+$lang_module['tiet'] = 'Tiết';
+$lang_module['tenbaihoc'] = 'Tên bài học';
+
+$lang_module['khoi1'] = '1';
+$lang_module['khoi2'] = '2';
+$lang_module['khoi3'] = '3';
+$lang_module['khoi4'] = '4';
+$lang_module['khoi5'] = '5';
+$lang_module['khoi6'] = '6';
+$lang_module['khoi7'] = '7';
+$lang_module['khoi8'] = '8';
+$lang_module['khoi9'] = '9';
+$lang_module['khoi10'] = '10';
+$lang_module['khoi11'] = '11';
+$lang_module['khoi12'] = '12';
+
+$lang_module['namhoc1'] = '2020 - 2021';
+$lang_module['namhoc2'] = '2021 - 2022';
+$lang_module['namhoc3'] = '2022 - 2023';
+
 
 
 $lang_module['add_headbook'] = 'Thêm sổ đầu bài';

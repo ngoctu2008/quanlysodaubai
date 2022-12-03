@@ -19,6 +19,7 @@ $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lan
 $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_studentlist;";
 $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_subjectlist;";
 $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_headbook;";
+$sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ppct;";
 
 $sql_create_module = $sql_drop_module;
 
@@ -81,6 +82,17 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
 $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_headbook (masodaubai, matuan, malop, mabuoi, thu, tiet, mamon, tietppct, hocsinhvang, tenbaihoc, nhanxet, diemhoctap, diemkyluat, diemvesinh, tongdiem, giaovienbmkiten, ngay) VALUES (1, 1, 1, 1, 'Thứ 2', 1, 1, 1, '[1, 2, 3, 4, 5]', 'Bài 1 – Khởi động làm quen giao diện ', 'Lớp học tốt', 8.7, 8.5, 8.6, 8, '/quanlysodaubai/uploads/quanlysodaubai/chuki1.png', 1232142114);";
 $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_headbook (masodaubai, matuan, malop, mabuoi, thu, tiet, mamon, tietppct, hocsinhvang, tenbaihoc, nhanxet, diemhoctap, diemkyluat, diemvesinh, tongdiem, giaovienbmkiten, ngay) VALUES (2, 1, 1, 1, 'Thứ 2', 2, 1, 1, '[1, 2, 3, 4, 5]', 'Bài 2 – Thao tác với bảng tính', 'Lớp học hay nói chuỵen nhiều', 9.7, 8, 8, 8.6, '/quanlysodaubai/uploads/quanlysodaubai/chuki2.png', 1232142114);";
 $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_headbook (masodaubai, matuan, malop, mabuoi, thu, tiet, mamon, tietppct, hocsinhvang, tenbaihoc, nhanxet, diemhoctap, diemkyluat, diemvesinh, tongdiem, giaovienbmkiten, ngay) VALUES (3, 1, 1, 1, 'Thứ 5', 3, 1, 1, '[1, 2, 3, 4, 5]', 'Bài 3 – Làm việc với dữ liệu', 'Bạn Huy đánh nhau với bạn Lâm trong lớp', 6.5, 8, 8, 7.5, '/quanlysodaubai/uploads/quanlysodaubai/chuki3.png', 1232142114);";
+
+//Phân phối chương trình
+$sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ppct (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  namHoc varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  khoi int(2) NOT NULL,
+  maMonHoc int(11) DEFAULT NULL,
+  tiet int(5) NOT NULL,
+  tenBaiHoc varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (id)
+  ) ENGINE=MyISAM;";
 
 
 
