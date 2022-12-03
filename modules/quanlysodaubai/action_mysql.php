@@ -18,6 +18,7 @@ $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lan
 $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_classlist;";
 $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_studentlist;";
 $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_subjectlist;";
+$sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_headbook;";
 
 $sql_create_module = $sql_drop_module;
 
@@ -55,4 +56,32 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
     tenMonHoc varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
     PRIMARY KEY (maMonHoc)
     ) ENGINE=MyISAM;";
+
+$sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_headbook (
+  masodaubai int(11) NOT NULL AUTO_INCREMENT,
+  matuan int(11) NOT NULL,
+  malop int(11) NOT NULL,
+  mabuoi int(1) NOT NULL,
+  thu varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  tiet int(1) NOT NULL,
+  mamon int(11) NOT NULL,
+  tietppct int(11) NOT NULL,
+  hocsinhvang longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(hocsinhvang)),
+  tenbaihoc varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  nhanxet varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  diemhoctap float NOT NULL,
+  diemkyluat float NOT NULL,
+  diemvesinh float NOT NULL,
+  tongdiem float NOT NULL,
+  giaovienbmkiten varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  ngay int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (masodaubai)
+) ENGINE=MyISAM;";
+
+$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_headbook (masodaubai, matuan, malop, mabuoi, thu, tiet, mamon, tietppct, hocsinhvang, tenbaihoc, nhanxet, diemhoctap, diemkyluat, diemvesinh, tongdiem, giaovienbmkiten, ngay) VALUES (1, 1, 1, 1, 'Thứ 2', 1, 1, 1, '[1, 2, 3, 4, 5]', 'Bài 1 – Khởi động làm quen giao diện ', 'Lớp học tốt', 8.7, 8.5, 8.6, 8, '/quanlysodaubai/uploads/quanlysodaubai/chuki1.png', 1232142114);";
+$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_headbook (masodaubai, matuan, malop, mabuoi, thu, tiet, mamon, tietppct, hocsinhvang, tenbaihoc, nhanxet, diemhoctap, diemkyluat, diemvesinh, tongdiem, giaovienbmkiten, ngay) VALUES (2, 1, 1, 1, 'Thứ 2', 2, 1, 1, '[1, 2, 3, 4, 5]', 'Bài 2 – Thao tác với bảng tính', 'Lớp học hay nói chuỵen nhiều', 9.7, 8, 8, 8.6, '/quanlysodaubai/uploads/quanlysodaubai/chuki2.png', 1232142114);";
+$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_headbook (masodaubai, matuan, malop, mabuoi, thu, tiet, mamon, tietppct, hocsinhvang, tenbaihoc, nhanxet, diemhoctap, diemkyluat, diemvesinh, tongdiem, giaovienbmkiten, ngay) VALUES (3, 1, 1, 1, 'Thứ 5', 3, 1, 1, '[1, 2, 3, 4, 5]', 'Bài 3 – Làm việc với dữ liệu', 'Bạn Huy đánh nhau với bạn Lâm trong lớp', 6.5, 8, 8, 7.5, '/quanlysodaubai/uploads/quanlysodaubai/chuki3.png', 1232142114);";
+
+
+
     
