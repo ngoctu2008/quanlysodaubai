@@ -35,7 +35,7 @@ function nv_del_headbook(masodaubai, checkss) {
 		$.post(script_name + '?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=delheadbook&nocache=' + new Date().getTime(), 'masodaubai=' + masodaubai + '&checkss=' + checkss, function(res) {
 			var r_split = res.split("_");
 			if (r_split[0] == 'OK') {
-				window.location.href = script_name + '?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=headbook';
+				window.location.href = script_name + '?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=manageheadbook';
 			} else if (r_split[0] == 'ERR') {
 				alert(r_split[1]);
 			} else {

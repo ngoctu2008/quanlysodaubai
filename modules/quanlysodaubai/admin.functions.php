@@ -27,7 +27,8 @@ $allow_func = array(
     'delsubject',
     'del',
     'manageheadbook',
-    'addheadbook'
+    'addheadbook',
+    'delheadbook'
 );
 
 define('NV_IS_FILE_ADMIN', true);

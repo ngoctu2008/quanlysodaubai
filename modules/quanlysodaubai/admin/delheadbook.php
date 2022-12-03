@@ -16,15 +16,11 @@ if (! defined('NV_IS_AJAX')) {
     die('Wrong URL');
 }
 
-die('DEL headbook');
-
-
 $checkss = $nv_Request->get_string('checkss', 'post');
 $masodaubai = $nv_Request->get_int('masodaubai', 'post', 0);
 $contents = '';
 
 if ($masodaubai > 0) {
-    die('DELETE FROM ' . NV_PREFIXLANG . '_' . $module_data . '_headbook WHERE masodaubai=' . $masodaubai);
     $sql ='DELETE FROM ' . NV_PREFIXLANG . '_' . $module_data . '_headbook WHERE masodaubai=' . $masodaubai;
     if ($db->exec($sql)) {
         $db->query("DELETE FROM " . NV_PREFIXLANG . "_" . $module_data . "_headbook WHERE masodaubai=" . $masodaubai);
