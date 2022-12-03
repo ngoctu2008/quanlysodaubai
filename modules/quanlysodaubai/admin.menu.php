@@ -14,11 +14,8 @@ if (! defined('NV_ADMIN')) {
 
 $submenu['setupinfo'] = $lang_module['setupinfo'];
 $submenu['classlist'] = $lang_module['classlist'];
-// hai cai sub menu này trong chức năng của sub menu classlist
-// $submenu['studentlist'] = $lang_module['studentlist'];
-// $submenu['teacherlist'] = $lang_module['teacherlist'];
-
 $submenu['subjectlist'] = $lang_module['subjectlist'];
+$submenu['manageheadbook'] = $lang_module['manage_headbook'];
 
 // if (defined('NV_IS_SPADMIN')) {
 // 	$submenu['config'] = $lang_module['config'];
