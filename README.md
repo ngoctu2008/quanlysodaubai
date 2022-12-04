@@ -15,6 +15,6 @@ Detailed information about Nukeviet at Wikipedia Encyclopedia: http://vi.wikiped
 Licensing
 NukeViet is released under GNU/GPL version 2 or any later version.
 
-See <a href="[https://www.youtube.com/](https://github.com/FromSunNews/quanlysodaubai/blob/master/LICENSE)" target="blank">
+See <a href="https://github.com/FromSunNews/quanlysodaubai/blob/master/LICENSE" target="blank">
     LICENSE
   </a> for the full license.
