@@ -20,7 +20,7 @@ $allow_func = array(
     'subjectlist',
     'teacherlist',
     'addstudent',
-    'addclass',   
+    'addclass',
     'addsubject',
     'delstudent',
     'delclass',
@@ -29,6 +29,8 @@ $allow_func = array(
     'manageheadbook',
     'addheadbook',
     'delheadbook',
+    'classdiagram',
+    'configclassdiagram',
     'import_ppct'
 );
 
