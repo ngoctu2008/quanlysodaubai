@@ -1,6 +1,6 @@
 ### quanlysodaubai
 
-###Licensing
+### Licensing
 NukeViet is released under GNU/GPL version 2 or any later version.
 
 See <a href="https://github.com/FromSunNews/quanlysodaubai/blob/master/LICENSE" target="blank">
