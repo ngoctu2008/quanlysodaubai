@@ -51,6 +51,7 @@
         </form>
     </div>
 
+   <div {DISPLAY_INFO} class="alert alert-info">Hiện admin đã khóa tuần {MATUAN}, bạn chỉ có thể xem và xuất file</div>
     <form action="" method="post" class="form-inline" {DISPLAY_FORM}>
 		<div class="table-responsive">
 			<table class="table table-striped table-bordered table-hover">
@@ -66,7 +67,7 @@
       <th colspan="3" align="center" style="vertical-align:middle;text-align:center;">{LANG.mark}</th>
       <th rowspan="2" align="center" style="vertical-align:middle;text-align:center;">{LANG.total_point}</th>
       <th rowspan="2" align="center" style="vertical-align:middle;text-align:center;" >{LANG.teacher_sign}</th>
-      <th rowspan="2" align="center" style="vertical-align:middle;text-align:center;" >{LANG.func}</th>
+      <th rowspan="2" align="center" style="vertical-align:middle;text-align:center;{DISPLAY_FUNC_TITLE}">{LANG.func}</th>
     </tr>
     <tr>
       <td>{LANG.study}</td>
@@ -95,7 +96,7 @@
       <td class="text-center">
         <img src="{DATA.giaovienbmkiten}" class="content-image" height="38" width="75" style="display:{DISPLAY_IMG}">
         </td>
-      <td class="text-center  w50">
+      <td class="text-center w50" {DISPLAY_FUNC}>
         <a href="{DATA.edit_url}" class="btn btn-default btn-xs"  style="display:{DISPLAY_EDIT}"><i class="fa fa-fw fa-edit"></i></a>
         <a class="btn btn-danger btn-xs" href="javascript:void(0);" onclick="nv_del_headbook({DATA.masodaubai}, {MANAMHOC}, {MATUAN}, {MALOP}, {MABUOI}, '{DATA.checksess}')" style="display:{DISPLAY_EDIT}"><i class="fa fa-fw fa-trash"></i></a>
         <a href="{DATA.add_url}" class="btn btn-success btn-xs" style="display:{DISPLAY_ADD}"><i class="fa fa-fw fa-plus"></i></a>
