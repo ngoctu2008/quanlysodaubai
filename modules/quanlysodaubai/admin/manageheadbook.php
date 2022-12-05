@@ -17,6 +17,8 @@ $matuan_get = $nv_Request->get_int('matuan', 'post,get');
 $malop_get = $nv_Request->get_int('malop', 'post,get');
 $mabuoi_get = $nv_Request->get_int('mabuoi', 'post,get');
 
+
+
 $page_title = $lang_module['manage_headbook'];
 
 $xtpl = new XTemplate('manageheadbook.tpl', NV_ROOTDIR . '/themes/' . $global_config['module_theme'] . '/modules/' . $module_file);
@@ -128,8 +130,20 @@ $querytungay = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data 
 
 $datatungay = $querytungay->fetch();
 $currenttime = $datatungay['tungay'];
+// cho nay lay trang thai tuan do
+
+
 
 if($manamhoc_get > 0 && $malop_get > 0 && $mabuoi_get >0 && $matuan_get >0) {
+    if($datatungay['trangthai'] == 1) {
+        $xtpl->assign('DISPLAY_INFO', 'style="display:none"');
+        $xtpl->assign('DISPLAY_FUNC_TITLE', '');
+        $xtpl->assign('DISPLAY_FUNC', '');
+    } else {
+        $xtpl->assign('DISPLAY_INFO', '');
+        $xtpl->assign('DISPLAY_FUNC_TITLE', 'display:none;');
+        $xtpl->assign('DISPLAY_FUNC', 'style="display:none;"');
+    }
     for ($i=2; $i <= 8; $i++){
         $array = [];
         // Gọi csdl để lấy dữ liệu
@@ -253,6 +267,9 @@ if($manamhoc_get > 0 && $malop_get > 0 && $mabuoi_get >0 && $matuan_get >0) {
         $currenttime += 86400;
     }
     $display_form = '';
+}
+else {
+    $xtpl->assign('DISPLAY_INFO', 'style="display:none"');
 }
 
 //Export Excel

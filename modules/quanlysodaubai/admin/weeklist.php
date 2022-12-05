@@ -35,12 +35,11 @@ while ($row = $query->fetch()) {
 if($array) {
     
     foreach ($array as $value) {
-
         $value['url_edit'] = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name . '&' . NV_OP_VARIABLE . '=editweek&schoolyearid='.$value['manamhoc'].'&weekid=' . $value['matuan'];
         $value['namhoc'] = $datanamhoc['tunam'].' - '.$datanamhoc['dennam'];
         $value['tungay'] = nv_date('d/m/Y', $value['tungay']);
         $value['denngay'] = nv_date('d/m/Y', $value['denngay']);
-        $value['active'] = $value['trangthai'] == 1 ? 'checked="checked"' : '';
+        $value['active'] = $value['trangthai'] == 1 ? 'checked' : '';
         $value['icon'] = $value['mota'] ? "edit" : "plus";
         $xtpl->assign('DATA', $value);
         $xtpl->parse('weeklist.loop');

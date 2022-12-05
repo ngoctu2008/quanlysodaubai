@@ -15,12 +15,17 @@ if (!defined('NV_IS_FILE_ADMIN')) {
 
 $matuan = $nv_Request->get_int('matuan', 'post', 0);
 
+if (!defined('NV_IS_GODADMIN')) {
+    die('Bạn không phải là admin không có quyền mở/khóa tuần !');
+}
 
 $new_status = $nv_Request->get_bool('new_status', 'post');
 $new_status = (int) $new_status;
 
 $sql = 'UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_week SET trangthai=' . $new_status . ' WHERE matuan=' . $matuan;
 $db->query($sql);
+die('OK');
+
 
 
 include NV_ROOTDIR . '/includes/header.php';
