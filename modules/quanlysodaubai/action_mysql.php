@@ -49,7 +49,7 @@ maLop int(11) DEFAULT NULL,
 hoTen varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
 ngaySinh int(11) NOT NULL,
 gioiTinh varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-soTietNghi int(11) NOT NULL DEFAULT 0,
+soTietNghi float(11) NOT NULL DEFAULT 0,
 anhDaiDien varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
 PRIMARY KEY (maHocSinh)
 ) ENGINE=MyISAM;";
@@ -61,24 +61,26 @@ PRIMARY KEY (maMonHoc)
 ) ENGINE=MyISAM;";
 
 $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_headbook (
-masodaubai int(11) NOT NULL AUTO_INCREMENT,
-matuan int(11) NOT NULL,
-malop int(11) NOT NULL,
-mabuoi int(1) NOT NULL,
-thu varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-tiet int(1) NOT NULL,
-mamon int(11) NOT NULL,
-tietppct int(11) NOT NULL,
-hocsinhvang varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-tenbaihoc varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-nhanxet varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-diemhoctap float NOT NULL,
-diemkyluat float NOT NULL,
-diemvesinh float NOT NULL,
-tongdiem float NOT NULL,
-giaovienbmkiten varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-ngay int(11) NOT NULL DEFAULT 0,
-PRIMARY KEY (masodaubai)
+  masodaubai int(11) NOT NULL AUTO_INCREMENT,
+  matuan int(11) NOT NULL,
+  malop int(11) NOT NULL,
+  mabuoi int(1) NOT NULL,
+  thu varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  tiet int(1) NOT NULL,
+  mamon int(11) NOT NULL,
+  tietppct int(11) NOT NULL,
+  cophep varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT 0,
+  khongphep varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT 0,
+  dimuon varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT 0,
+  tenbaihoc varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  nhanxet varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  diemhoctap float NOT NULL,
+  diemkyluat float NOT NULL,
+  diemvesinh float NOT NULL,
+  tongdiem float NOT NULL,
+  giaovienbmkiten varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  ngay int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (masodaubai)
 ) ENGINE=MyISAM;";
 
 //Phân phối chương trình

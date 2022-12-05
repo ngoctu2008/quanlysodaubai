@@ -91,9 +91,9 @@ function nv_change_active_week(matuan) {
 	}
 }
 
-function change_subject() {
+function change_subject(khoi) {
 	var mamonhoc = $('#subject').val();
-	$.ajax({url: script_name + '?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=addheadbook&change_subject=1&mamonhoc=' + mamonhoc, success: function(result){
+	$.ajax({url: script_name + '?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=addheadbook&change_subject=1&mamonhoc=' + mamonhoc+'&khoi='+khoi, success: function(result){
 		if (result != 'ERR') {
 			$('#name_lesson').html(result);
 		}
