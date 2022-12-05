@@ -152,13 +152,11 @@ $lang_module['namhoc1'] = '2020 - 2021';
 $lang_module['namhoc2'] = '2021 - 2022';
 $lang_module['namhoc3'] = '2022 - 2023';
 
-
-
 $lang_module['add_headbook'] = 'Thêm sổ đầu bài';
 $lang_module['edit_headbook'] = 'Chỉnh sửa sổ đầu bài';
+$lang_module['export_headbook'] = 'Xuất sổ đầu bài';
 
 $lang_module['week_display'] = 'Hiển Thị Tuần';
-
 
 $lang_module['manageweek'] = 'Quản lý tuần';
 $lang_module['manageschoolyear'] = 'Quản lý năm học';
