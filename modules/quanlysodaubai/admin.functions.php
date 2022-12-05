@@ -20,7 +20,7 @@ $allow_func = array(
     'subjectlist',
     'teacherlist',
     'addstudent',
-    'addclass',   
+    'addclass',
     'addsubject',
     'delstudent',
     'delclass',
@@ -36,7 +36,9 @@ $allow_func = array(
     'delschoolyear',
     'change_active',
     'editweek'
-
+    'classdiagram',
+    'configclassdiagram',
+    'import_ppct'
 );
 
 define('NV_IS_FILE_ADMIN', true);
