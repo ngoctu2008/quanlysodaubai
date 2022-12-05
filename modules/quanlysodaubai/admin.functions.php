@@ -35,7 +35,7 @@ $allow_func = array(
     'addweek',
     'delschoolyear',
     'change_active',
-    'editweek'
+    'editweek',
     'classdiagram',
     'configclassdiagram',
     'import_ppct'

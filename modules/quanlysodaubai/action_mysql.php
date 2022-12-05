@@ -55,10 +55,10 @@ PRIMARY KEY (maHocSinh)
 ) ENGINE=MyISAM;";
 
 $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_subjectlist (
-    maMonHoc int(11) NOT NULL AUTO_INCREMENT,
-    tenMonHoc varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-    PRIMARY KEY (maMonHoc)
-    ) ENGINE=MyISAM;";
+maMonHoc int(11) NOT NULL AUTO_INCREMENT,
+tenMonHoc varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+PRIMARY KEY (maMonHoc)
+) ENGINE=MyISAM;";
 
 $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_headbook (
   masodaubai int(11) NOT NULL AUTO_INCREMENT,
@@ -83,39 +83,38 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
   PRIMARY KEY (masodaubai)
 ) ENGINE=MyISAM;";
 
-
 //Phân phối chương trình
 $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ppct (
-  id int(11) NOT NULL AUTO_INCREMENT,
-  namHoc varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  khoi int(2) NOT NULL,
-  maMonHoc int(11) DEFAULT NULL,
-  tiet int(5) NOT NULL,
-  tenBaiHoc varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (id)
-  ) ENGINE=MyISAM;";
+id int(11) NOT NULL AUTO_INCREMENT,
+namHoc varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+khoi int(2) NOT NULL,
+maMonHoc int(11) DEFAULT NULL,
+tiet int(5) NOT NULL,
+tenBaiHoc varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+PRIMARY KEY (id)
+) ENGINE=MyISAM;";
 
-  // năm học
-  $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_schoolyear (
-    manamhoc int(11) NOT NULL AUTO_INCREMENT,
-    tunam int(11) NOT NULL,
-    dennam int(11) NOT NULL,
-    thoigianbatdau int(11) NOT NULL,
-    thoigianketthuc int(11) NOT NULL,
-    PRIMARY KEY (manamhoc)
-    ) ENGINE=MyISAM;";
+// năm học
+$sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_schoolyear (
+manamhoc int(11) NOT NULL AUTO_INCREMENT,
+tunam int(11) NOT NULL,
+dennam int(11) NOT NULL,
+thoigianbatdau int(11) NOT NULL,
+thoigianketthuc int(11) NOT NULL,
+PRIMARY KEY (manamhoc)
+) ENGINE=MyISAM;";
 
-  // tuần
+// tuần
 $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_week (
-  matuan int(11) NOT NULL AUTO_INCREMENT,
-  manamhoc int(11) NOT NULL,
-  tungay int(11) NOT NULL,
-  denngay int(11) NOT NULL,
-  tentuan varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  mota varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  trangthai tinyint(1) NOT NULL DEFAULT 1,
-  PRIMARY KEY (matuan)
-  ) ENGINE=MyISAM;";
+matuan int(11) NOT NULL AUTO_INCREMENT,
+manamhoc int(11) NOT NULL,
+tungay int(11) NOT NULL,
+denngay int(11) NOT NULL,
+tentuan varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+mota varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+trangthai tinyint(1) NOT NULL DEFAULT 1,
+PRIMARY KEY (matuan)
+) ENGINE=MyISAM;";
 
 
 
