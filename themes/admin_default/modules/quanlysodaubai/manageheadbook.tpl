@@ -61,6 +61,7 @@
       <th rowspan="2" align="center" style="vertical-align:middle;text-align:center;">{LANG.lesson_program}</th>
       <th rowspan="2" align="center" style="vertical-align:middle;text-align:center;">{LANG.name_lesson}</th>
       <th rowspan="2" align="center" style="vertical-align:middle;text-align:center;">{LANG.student_absent}</th>
+      <th rowspan="2" align="center" style="vertical-align:middle;text-align:center;">{LANG.late}</th>
       <th rowspan="2" align="center" style="vertical-align:middle;text-align:center;">{LANG.comment}</th>
       <th colspan="3" align="center" style="vertical-align:middle;text-align:center;">{LANG.mark}</th>
       <th rowspan="2" align="center" style="vertical-align:middle;text-align:center;">{LANG.total_point}</th>
@@ -69,7 +70,6 @@
     </tr>
     <tr>
       <td>{LANG.study}</td>
-
       <td>{LANG.discipline}</td>
       <td>{LANG.clean}</td>
     </tr>
@@ -82,11 +82,11 @@
       </td>
       <td>
         {DATA.tenmonhoc}
-        <a href="{DATA.add_url}" class="btn btn-success btn-xs" style="display:{DISPLAY_ADD}"><i class="fa fa-fw fa-plus"></i></a>
       </td>
       <td>{DATA.tietppct}</td>
       <td>{DATA.tenbaihoc}</td>
       <td>{DATA.tenhocsinhnghi}</td>
+      <td>{DATA.tenhocsinhdimuon}</td>
       <td>{DATA.nhanxet}</td>
       <td>{DATA.diemhoctap}</td>
       <td>{DATA.diemkyluat}</td>
@@ -95,9 +95,10 @@
       <td class="text-center">
         <img src="{DATA.giaovienbmkiten}" class="content-image" height="38" width="75" style="display:{DISPLAY_IMG}">
         </td>
-      <td class="text-center">
+      <td class="text-center  w50">
         <a href="{DATA.edit_url}" class="btn btn-default btn-xs"  style="display:{DISPLAY_EDIT}"><i class="fa fa-fw fa-edit"></i></a>
         <a class="btn btn-danger btn-xs" href="javascript:void(0);" onclick="nv_del_headbook({DATA.masodaubai}, {MANAMHOC}, {MATUAN}, {MALOP}, {MABUOI}, '{DATA.checksess}')" style="display:{DISPLAY_EDIT}"><i class="fa fa-fw fa-trash"></i></a>
+        <a href="{DATA.add_url}" class="btn btn-success btn-xs" style="display:{DISPLAY_ADD}"><i class="fa fa-fw fa-plus"></i></a>
       </td>
     </tr>
     <!-- END: looplesson -->

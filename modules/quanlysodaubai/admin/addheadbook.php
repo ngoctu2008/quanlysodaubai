@@ -24,9 +24,10 @@ if (!defined('NV_IS_FILE_ADMIN')) {
 
 if($nv_Request->isset_request("change_subject","post,get")) {
     $mamonhoc = $nv_Request->get_int('mamonhoc','get',0);
+    $khoi = $nv_Request->get_int('khoi','get',0);
     // Subject
-    if ($mamonhoc > 0) {
-        $queryppct = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_ppct WHERE maMonHoc='.$mamonhoc.' ORDER BY tiet ASC');
+    if ($mamonhoc > 0 && $khoi > 0) {
+        $queryppct = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_ppct WHERE maMonHoc='.$mamonhoc.' AND khoi='.$khoi.' ORDER BY tiet ASC');
         $html = '<option value="0">Chọn tên bài học</option>';
         while ($row = $queryppct->fetch()) {
             $html .= '<option value="' . $row['id'] . '">' . $row['tenbaihoc'] . '</option>';
@@ -54,6 +55,15 @@ if($nv_Request->isset_request("change_name_lesson","post,get")) {
 $xtpl = new XTemplate('addheadbook.tpl', NV_ROOTDIR . '/themes/' . $global_config['module_theme'] . '/modules/' . $module_file);
 $xtpl->assign('LANG', $lang_module);
 $xtpl->assign('GLANG', $lang_global);
+
+// lay khoi ra 
+$queryunit = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_classlist WHERE maLop='.$malop);
+$dataunit = $queryunit->fetch();
+
+$khoi = $dataunit['khoi'];
+
+$xtpl->assign('KHOI', $khoi);
+
 if($id) {
     // sua form 
     $page_title = $lang_module['edit_headbook'];
@@ -109,34 +119,72 @@ if($id) {
     // hocsinh
     $querystudent = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_studentlist WHERE maLop ='.$malop);
     // o day phai doi tim duoc hoc sinh nghi
-    $arrabsent = explode(",", $dataheadbook['hocsinhvang']);
     $arraystudent = [];
     while ($row = $querystudent->fetch()) {
         $arraystudent[$row['mahocsinh']] = $row;
     }
-
-    // hien thi du lieu hócinh
+    
+    $arrabsentper = explode(",", $dataheadbook['cophep']);
+    // hien thi du lieu hócinh vang phep
     if(!empty($arraystudent)) {
         foreach ($arraystudent as $value) {
             $value['key'] = $value['mahocsinh'];
             $value['title'] = $value['hoten'];
             $value['selected'] =  "";
 
-            $last_key = end(array_keys($arrabsent));
-                foreach ($arrabsent as $key => $mahocsinh) {
+            $last_key = end(array_keys($arrabsentper));
+                foreach ($arrabsentper as $key => $mahocsinh) {
                     if ($mahocsinh == $value['mahocsinh']) {
                         $value['selected'] = "selected";
                     }
                 }
             
-            $xtpl->assign('DATA_STUDENT', $value);
-            $xtpl->parse('addheadbook.loopstudent');
+            $xtpl->assign('DATA_STUDENT_ABSENT_PER', $value);
+            $xtpl->parse('addheadbook.loopstudentabsentper');
         }
     }
 
-     // hocsinh
+    $arrabsentnoper = explode(",", $dataheadbook['khongphep']);
+    // hien thi du lieu hócinh vang phep
+    if(!empty($arraystudent)) {
+        foreach ($arraystudent as $value) {
+            $value['key'] = $value['mahocsinh'];
+            $value['title'] = $value['hoten'];
+            $value['selected'] =  "";
+
+            $last_key = end(array_keys($arrabsentnoper));
+                foreach ($arrabsentnoper as $key => $mahocsinh) {
+                    if ($mahocsinh == $value['mahocsinh']) {
+                        $value['selected'] = "selected";
+                    }
+                }
+            
+            $xtpl->assign('DATA_STUDENT_ABSENT_NOPER', $value);
+            $xtpl->parse('addheadbook.loopstudentabsentnoper');
+        }
+    }
+
+    $arrlate = explode(",", $dataheadbook['dimuon']);
+    // hien thi du lieu hócinh vang phep
+    if(!empty($arraystudent)) {
+        foreach ($arraystudent as $value) {
+            $value['key'] = $value['mahocsinh'];
+            $value['title'] = $value['hoten'];
+            $value['selected'] =  "";
+
+            $last_key = end(array_keys($arrlate));
+                foreach ($arrlate as $key => $mahocsinh) {
+                    if ($mahocsinh == $value['mahocsinh']) {
+                        $value['selected'] = "selected";
+                    }
+                }
+            
+            $xtpl->assign('DATA_STUDENT_LATE', $value);
+            $xtpl->parse('addheadbook.loopstudentlate');
+        }
+    }
+
      $querynamelesson = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_ppct WHERE maMonHoc ='.$dataheadbook['mamon'] .' ORDER BY tiet ASC');
-     // o day phai doi tim duoc hoc sinh nghi
      $selectednamelesson=$dataheadbook['tietppct'];
      $arraynamelesson = [];
      while ($row = $querynamelesson->fetch()) {
@@ -214,15 +262,39 @@ if($id) {
         $arraystudent[$row['mahocsinh']] = $row;
     }
 
-    // hien thi du lieu hócinh
+    // hien thi du lieu hócinh phép
     if(!empty($arraystudent)) {
         foreach ($arraystudent as $value) {
             $value['key'] = $value['mahocsinh'];
             $value['title'] = $value['hoten'];
             $value['selected'] = $selectedstudent == $value['mahocsinh'] ? "selected" : "";
 
-            $xtpl->assign('DATA_STUDENT', $value);
-            $xtpl->parse('addheadbook.loopstudent');
+            $xtpl->assign('DATA_STUDENT_ABSENT_PER', $value);
+            $xtpl->parse('addheadbook.loopstudentabsentper');
+        }
+    }
+
+    // hien thi du lieu hócinh không phép
+    if(!empty($arraystudent)) {
+        foreach ($arraystudent as $value) {
+            $value['key'] = $value['mahocsinh'];
+            $value['title'] = $value['hoten'];
+            $value['selected'] = $selectedstudent == $value['mahocsinh'] ? "selected" : "";
+
+            $xtpl->assign('DATA_STUDENT_ABSENT_NOPER', $value);
+            $xtpl->parse('addheadbook.loopstudentabsentnoper');
+        }
+    }
+
+    // hien thi du lieu hócinh muộn
+    if(!empty($arraystudent)) {
+        foreach ($arraystudent as $value) {
+            $value['key'] = $value['mahocsinh'];
+            $value['title'] = $value['hoten'];
+            $value['selected'] = $selectedstudent == $value['mahocsinh'] ? "selected" : "";
+
+            $xtpl->assign('DATA_STUDENT_LATE', $value);
+            $xtpl->parse('addheadbook.loopstudentlate');
         }
     }
 }
@@ -235,14 +307,36 @@ if ($nv_Request->isset_request('btnsubmit', 'post')) {
     $row['thu'] = $lang_module['day'.$thu] ;
     $row['tiet'] = $tiet;
     $row['mamon'] = $nv_Request->get_int('mamon', 'post', '');
-    // $row['tietppct'] = $nv_Request->get_int('tietppct', 'post,get', '');
-    $row['hocsinhvang'] = '';
-    $last_key = end(array_keys($_POST['hocsinhvang']));
-    foreach ($_POST['hocsinhvang'] as $key => $value) {
+
+    $row['cophep'] = '';
+    $last_key = end(array_keys($_POST['cophep']));
+    foreach ($_POST['cophep'] as $key => $value) {
         if ($key == $last_key) {
-            $row['hocsinhvang'] .= $value . '';
+            $row['cophep'] .= $value . '';
         } else {
-            $row['hocsinhvang'] .= $value . ', ';
+            $row['cophep'] .= $value . ', ';
+        }
+        // dong thoi update lai sotiet nghi cua hoc sinh
+        // moi dau la phai lay ve dc so tiet nghi 
+        $querystudent = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_studentlist WHERE maHocSinh=' . $value);
+        $datastudent = $querystudent->fetch();
+
+        $sotietnghi = $datastudent['sotietnghi'] + 0.5;
+        
+
+        $_sql = 'UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_studentlist 
+        SET soTietNghi = '.$sotietnghi.' WHERE maHocSinh=' . $value;
+        $sth = $db->prepare($_sql);
+        $exe = $sth->execute();
+    }
+
+    $row['khongphep'] = '';
+    $last_key = end(array_keys($_POST['khongphep']));
+    foreach ($_POST['khongphep'] as $key => $value) {
+        if ($key == $last_key) {
+            $row['khongphep'] .= $value . '';
+        } else {
+            $row['khongphep'] .= $value . ', ';
         }
         // dong thoi update lai sotiet nghi cua hoc sinh
         // moi dau la phai lay ve dc so tiet nghi 
@@ -257,9 +351,19 @@ if ($nv_Request->isset_request('btnsubmit', 'post')) {
         $sth = $db->prepare($_sql);
         $exe = $sth->execute();
     }
-    
-    $row['tenbaihoc'] = nv_substr($nv_Request->get_title('tenbaihoc', 'post', ''), 0, 250);
 
+    $row['dimuon'] = '';
+    $last_key = end(array_keys($_POST['dimuon']));
+    foreach ($_POST['dimuon'] as $key => $value) {
+        if ($key == $last_key) {
+            $row['dimuon'] .= $value . '';
+        } else {
+            $row['dimuon'] .= $value . ', ';
+        }
+    }
+    
+    $row['tenbaihoc'] = nv_substr($nv_Request->get_int('tenbaihoc', 'post', ''), 0, 250);
+    // die('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_ppct WHERE id=' . $row['tenbaihoc']);
     $queryppct = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_ppct WHERE id=' . $row['tenbaihoc']);
 
     $datappct = $queryppct->fetch();
@@ -286,13 +390,13 @@ if ($nv_Request->isset_request('btnsubmit', 'post')) {
     if ($id) {
         $_sql = 'UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_headbook SET
             matuan=:matuan, malop=:malop, mabuoi=:mabuoi, thu=:thu, tiet=:tiet, 
-            mamon=:mamon, tietppct=:tietppct, hocsinhvang=:hocsinhvang, tenbaihoc=:tenbaihoc, 
+            mamon=:mamon, tietppct=:tietppct, cophep=:cophep, khongphep=:khongphep, dimuon=:dimuon, tenbaihoc=:tenbaihoc, 
             nhanxet=:nhanxet, diemhoctap=:diemhoctap, diemkyluat=:diemkyluat, diemvesinh=:diemvesinh, 
             tongdiem=:tongdiem, giaovienbmkiten=:giaovienbmkiten, ngay=:ngay WHERE masodaubai ='.$id;
     } else {
         $_sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_headbook (
-            matuan, malop, mabuoi, thu, tiet, mamon, tietppct, hocsinhvang, tenbaihoc, nhanxet, diemhoctap, diemkyluat, diemvesinh, tongdiem, giaovienbmkiten, ngay) VALUES (
-            :matuan, :malop, :mabuoi, :thu, :tiet, :mamon, :tietppct, :hocsinhvang, :tenbaihoc, :nhanxet, :diemhoctap, :diemkyluat, :diemvesinh, :tongdiem, :giaovienbmkiten, :ngay)';
+            matuan, malop, mabuoi, thu, tiet, mamon, tietppct, dimuon, cophep, khongphep, tenbaihoc, nhanxet, diemhoctap, diemkyluat, diemvesinh, tongdiem, giaovienbmkiten, ngay) VALUES (
+            :matuan, :malop, :mabuoi, :thu, :tiet, :mamon, :tietppct, :dimuon, :cophep, :khongphep, :tenbaihoc, :nhanxet, :diemhoctap, :diemkyluat, :diemvesinh, :tongdiem, :giaovienbmkiten, :ngay)';
     }
 
     $sth = $db->prepare($_sql);
@@ -303,7 +407,9 @@ if ($nv_Request->isset_request('btnsubmit', 'post')) {
     $sth->bindParam(':tiet', $row['tiet'], PDO::PARAM_STR);
     $sth->bindParam(':mamon', $row['mamon'], PDO::PARAM_STR);
     $sth->bindParam(':tietppct', $row['tietppct'], PDO::PARAM_STR);
-    $sth->bindParam(':hocsinhvang', $row['hocsinhvang'], PDO::PARAM_STR);
+    $sth->bindParam(':dimuon', $row['dimuon'], PDO::PARAM_STR);
+    $sth->bindParam(':cophep', $row['cophep'], PDO::PARAM_STR);
+    $sth->bindParam(':khongphep', $row['khongphep'] , PDO::PARAM_STR);
     $sth->bindParam(':tenbaihoc', $row['tenbaihoc'], PDO::PARAM_STR);
     $sth->bindParam(':nhanxet', $row['nhanxet'], PDO::PARAM_STR);
     $sth->bindParam(':diemhoctap', $row['diemhoctap'], PDO::PARAM_STR);

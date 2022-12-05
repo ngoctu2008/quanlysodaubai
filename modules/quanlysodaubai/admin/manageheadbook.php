@@ -153,7 +153,7 @@ if($manamhoc_get > 0 && $malop_get > 0 && $mabuoi_get >0 && $matuan_get >0) {
                 $value = $array[$j];
                 $day = '';
                 if ($j == 1) {
-                    $day = '<td rowspan="5" align="center" style="vertical-align:middle">'. $lang_module['day'.$i] .'<br />'.nv_date('d/m/Y',$currenttime).'</td>';
+                    $day = '<td rowspan="5" align="center" style="vertical-align:middle; font-weight:600">'. $lang_module['day'.$i] .'<br />'.nv_date('d/m/Y',$currenttime).'</td>';
                 }
                 if ($value) {
                     $value['checksess'] = md5($value['masodaubai'] . NV_CHECK_SESSION);
@@ -165,22 +165,60 @@ if($manamhoc_get > 0 && $malop_get > 0 && $mabuoi_get >0 && $matuan_get >0) {
                     $value['tenmonhoc'] = $datasubject['tenmonhoc'];
     
                     // chuyen thanh array
-                    $arrabsent = explode(",", $value['hocsinhvang']);
+                    $arrabsent1 = explode(",", $value['cophep']);
+                    $arrabsent2 = explode(",", $value['khongphep']);
                     $value['tenhocsinhnghi'] = '';
                     // lay ra may thang nghi
-    
-                    $last_key = end(array_keys($arrabsent));
-                    foreach ($arrabsent as $key => $mahocsinh) {
-                        // die('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_studentlist WHERE maHocSinh=' . $mahocsinh);
-                        $queryabsent = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_studentlist WHERE maHocSinh=' . $mahocsinh);
-                        $dataabsent = $queryabsent->fetch();
-                        if ($key == $last_key) {
-                            $value['tenhocsinhnghi'] .= $dataabsent['hoten'];
-                        } else {
-                            $value['tenhocsinhnghi'] .= $dataabsent['hoten'] . ', ';
+                    if ($arrabsent1[0]  != 0) {
+                        $last_key1 = end(array_keys($arrabsent1));
+                        foreach ($arrabsent1 as $key => $mahocsinh) {
+                            // die('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_studentlist WHERE maHocSinh=' . $mahocsinh);
+                            $queryabsent = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_studentlist WHERE maHocSinh=' . $mahocsinh);
+                            $dataabsent = $queryabsent->fetch();
+                            if ($key == $last_key1) {
+                                $value['tenhocsinhnghi'] .= $dataabsent['hoten'] . ': CP';
+                            } else {
+                                $value['tenhocsinhnghi'] .= $dataabsent['hoten'] . ', ';
+                            }
+                        }
+                    }
+                    
+                    if ($arrabsent2[0]  != '') {
+                        if ($arrabsent1[0] != '')
+                            $value['tenhocsinhnghi'] .= ', ';
+                        $last_key2 = end(array_keys($arrabsent2));
+                        foreach ($arrabsent2 as $key => $mahocsinh) {
+                            // die('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_studentlist WHERE maHocSinh=' . $mahocsinh);
+                            $queryabsent = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_studentlist WHERE maHocSinh=' . $mahocsinh);
+                            $dataabsent = $queryabsent->fetch();
+                            if ($key == $last_key2) {
+                                $value['tenhocsinhnghi'] .= $dataabsent['hoten'] . ': K';
+                            } else {
+                                $value['tenhocsinhnghi'] .= $dataabsent['hoten'] . ', ';
+                            }
+                        }
+                    }
+                    
+                    
+                    // lay di may thang di hoc mon 
+
+                    $arrlate = explode(",", $value['dimuon']);
+                    $value['tenhocsinhdimuon'] = '';
+                    if($arrlate[0] != '') {
+                        $last_key3 = end(array_keys($arrlate));
+                        foreach ($arrlate as $key => $mahocsinh) {
+                            // die('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_studentlist WHERE maHocSinh=' . $mahocsinh);
+                            $querylate = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_studentlist WHERE maHocSinh=' . $mahocsinh);
+                            $datalate = $querylate->fetch();
+                            if ($key == $last_key3) {
+                                $value['tenhocsinhdimuon'] .= $datalate['hoten'];
+                            } else {
+                                $value['tenhocsinhdimuon'] .= $datalate['hoten'] . ', ';
+                            }
                         }
                     }
     
+                    
                     $xtpl->assign('DISPLAY_ADD', 'none');
                     $xtpl->assign('DISPLAY_EDIT', 'block');
     
@@ -195,7 +233,6 @@ if($manamhoc_get > 0 && $malop_get > 0 && $mabuoi_get >0 && $matuan_get >0) {
                     $xtpl->assign('DISPLAY_IMG', 'none');
     
                 }
-
                 $xtpl->assign('DATA', $value);
                 $xtpl->assign('DAY', $day);
                 $xtpl->assign('LESSON', $j);
@@ -205,13 +242,11 @@ if($manamhoc_get > 0 && $malop_get > 0 && $mabuoi_get >0 && $matuan_get >0) {
     
     
         } else {
-            // die($i . ' kkk');
             for ($j=1; $j <= 5; $j++) {
                 $day = '';
                 $value = [];
                 if ($j== 1) {
-                    // $dayspecifed = nv_date('d/m/Y', $value['ngaysinh']);
-                    $day = '<td rowspan="5" align="center" style="vertical-align:middle">'. $lang_module['day'.$i] .'<br />'.nv_date('d/m/Y',$currenttime).'</td>';
+                    $day = '<td rowspan="5" align="center" style="vertical-align:middle;font-weight:600">'. $lang_module['day'.$i] .'<br />'.nv_date('d/m/Y',$currenttime).'</td>';
                 }
                 $value['add_url'] = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name . '&' . NV_OP_VARIABLE . '=addheadbook&manamhoc='.$manamhoc_get.'&matuan='.$matuan_get.'&malop='.$malop_get.'&mabuoi='.$mabuoi_get.'&thu='.$i . '&tiet='.$j;
     
