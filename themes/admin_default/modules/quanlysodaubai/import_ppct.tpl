@@ -18,10 +18,11 @@
 						<tr>
 							<td class="text-right">{LANG.namhoc} <sup class="required">(*)</sup><br><small class="text-danger">{LANG.require_select}</small></td>
 							<td>
-								<select class="form-control w150" name="namhoc_{DATA_NAMHOC.key}">
-										<!-- BEGIN: loopnamhoc -->
-										<option value="{DATA_NAMHOC.key}" {DATA_NAMHOC.selected}>{DATA_NAMHOC.title}</option>
-										<!-- END: loopnamhoc -->
+								<select class="form-control w200" name="subject_{DATA_SCHOOLYEAR.key}>
+									<option value="0" selected>Chọn năm học</option>
+									<!-- BEGIN: loopschoolyear -->
+									<option value="{DATA_SCHOOLYEAR.key}" {DATA_SCHOOLYEAR.selected}>{DATA_SCHOOLYEAR.title}</option>
+									<!-- END: loopschoolyear -->
 								</select>
 							</td>
 						</tr>
@@ -39,9 +40,9 @@
 							<td class="text-right">{LANG.subject} <sup class="required">(*)</sup><br><small class="text-danger">{LANG.require_select}</small></td>
 							<td>
 								<select class="form-control w200" name="subject_{DATA_SUBJECT.key}">
-										<!-- BEGIN: loopsubject -->
-										<option value="{DATA_SUBJECT.key}" {DATA_SUBJECT.selected}>{DATA_SUBJECT.title}</option>
-										<!-- END: loopsubject -->
+									<!-- BEGIN: loopsubject -->
+									<option value="{DATA_SUBJECT.key}" {DATA_SUBJECT.selected}>{DATA_SUBJECT.title}</option>
+									<!-- END: loopsubject -->
 								</select>
 							</td>
 						</tr>						

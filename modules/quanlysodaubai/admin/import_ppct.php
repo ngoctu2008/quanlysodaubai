@@ -30,7 +30,6 @@ while ($row = $querysubject->fetch()) {
 	}
 	$i++;
 }
-
 // hien thi du lieu subject drop down
 if(!empty($arraysubject)) { 
 	foreach ($arraysubject as $value) {
@@ -40,6 +39,27 @@ if(!empty($arraysubject)) {
 
 		$xtpl->assign('DATA_SUBJECT', $value);
 		$xtpl->parse('main.loopsubject');
+	}
+}
+
+$queryschoolyear = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_schoolyear');
+$i = 0;
+$selectedschoolyear;
+while ($row = $queryschoolyear->fetch()) {
+	$arrayschoolyear[$row['manamhoc']] = $row;
+	if($i ==0)
+	{
+		$selectedschoolyear = $row['manamhoc'];
+	}
+	$i++;
+}
+if(!empty($arrayschoolyear)) { 
+	foreach ($arrayschoolyear as $value) {
+		$value['key'] = $value['manamhoc'];
+		$value['title'] = $value['tunam'] . ' - ' . $value['dennam'];
+		$value['selected'] = $selectedschoolyear == $value['manamhoc'] ? "selected" : "";
+		$xtpl->assign('DATA_SCHOOLYEAR', $value);
+		$xtpl->parse('main.loopschoolyear');
 	}
 }
 
@@ -54,22 +74,6 @@ for ($i = 1; $i <= 12; ++$i) {
 	$xtpl->parse('main.loopkhoi');
 }
 
-$selectednamhoc = $lang_module['namhoc'];
-for ($i = 1; $i <= 3; ++$i) {
-	$value = [
-		'key' => $i,
-		'title' => $lang_module['namhoc' . $i],
-		'selected' => $selectednamhoc == $lang_module['namhoc' . $i] ? ' selected="selected"' : ''
-	];
-	$xtpl->assign('DATA_NAMHOC', $value);
-	$xtpl->parse('main.loopnamhoc');
-}
-
-for ($i = 1; $i <= 3; ++$i) {
-	$namhoc = nv_substr($nv_Request->get_title('namhoc_' . $i, 'post', ''), 0, 250);
-}
-$namhoc = $lang_module['namhoc' . $namhoc];
-
 for ($i = 1; $i <= 12; ++$i) {
 	$khoi = nv_substr($nv_Request->get_title('khoi_' . $i, 'post', ''), 0, 250);
 }
@@ -79,7 +83,13 @@ if(!empty($arraysubject)) {
 	foreach ($arraysubject as $value) {
 		$mamonhoc = $nv_Request->get_int('subject_' . $value['mamonhoc'], 'post', '');
 	}
-}			
+}	
+
+if(!empty($arrayschoolyear)) { 
+	foreach ($arrayschoolyear as $value) {
+		$manamhoc = $nv_Request->get_int('schoolyear_' . $value['manamhoc'], 'post', '');
+	}
+}	
 
 // Khi nhấn Import
 if ($nv_Request->isset_request('do', 'post')) {

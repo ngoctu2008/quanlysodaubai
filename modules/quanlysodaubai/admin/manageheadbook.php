@@ -262,101 +262,72 @@ if ($nv_Request->isset_request('export', 'post')) {
     $objPHPExcel->getProperties()
                 ->setCreator("Administrator")
                 ->setTitle("Sổ đầu bài");
-    $objPHPExcel->setActiveSheetIndex(0);   
-    $objPHPExcel->getActiveSheet()->SetCellValue('A2', 'Thứ, ngày');
-    $objPHPExcel->getActiveSheet()->SetCellValue('B2', 'Tiết');
-    $objPHPExcel->getActiveSheet()->SetCellValue('C2', 'Môn');
-    $objPHPExcel->getActiveSheet()->SetCellValue('D2', 'Tiết PPCT');
-    $objPHPExcel->getActiveSheet()->SetCellValue('E2', 'Học sinh vắng');
-    $objPHPExcel->getActiveSheet()->SetCellValue('F2', 'Tên bài học, nội dung công việc');
-    $objPHPExcel->getActiveSheet()->SetCellValue('G2', 'Nhận xét');
-    $objPHPExcel->getActiveSheet()->SetCellValue('H2', 'Điểm');
-    $objPHPExcel->getActiveSheet()->SetCellValue('H3', 'Học tập');
-    $objPHPExcel->getActiveSheet()->SetCellValue('I3', 'Kỷ luật');
-    $objPHPExcel->getActiveSheet()->SetCellValue('J3', 'Vệ sinh');
-    $objPHPExcel->getActiveSheet()->SetCellValue('K2', 'Tổng điểm');
-    $objPHPExcel->getActiveSheet()->SetCellValue('L2', 'GV dạy kí tên');
-    $rowCount = 4;
+    $objPHPExcel->createSheet(NULL, 1);
 
-    //Tổng kết tuần
-    $tuan_vang = '...';
-    $tuan_vang_P = '...';
-    $tuan_vang_K = '...';
-    $tuan_muon = '...';
-    $tuan_vpkhac = '...';
-    $tuan_diem_hoctap = '...';
-    $tuan_diem_kyluat = '...';
-    $tuan_diem_vesinh = '...';
-    $tuan_diem_tru= '...';
-    $tuan_diem_tb = '...';
-    $tuan_hoctot = '...';
-    $tuan_xepthu = '...';
-    $tuan_YK_GVBM = '...';
-    $tuan_YK_GVCN = '...';
-    $tuan_YK_BGH = '...';
-    $objPHPExcel->getActiveSheet()->SetCellValue('N2',  mb_strtoupper('Tổng kết tuần'));
-    $objPHPExcel->getActiveSheet()->SetCellValue('N3', 'Vắng: '.$tuan_vang.', trong đó: '.$tuan_vang_P.'P; '.$tuan_vang_K.'K');
-    $objPHPExcel->getActiveSheet()->SetCellValue('N4', 'Đi học muộn: '.$tuan_muon);
-    $objPHPExcel->getActiveSheet()->SetCellValue('N5', 'Vi phạm khác: '.$tuan_vpkhac);
-    $objPHPExcel->getActiveSheet()->SetCellValue('N7', 'Điểm cuối tuần: ');
-    $objPHPExcel->getActiveSheet()->SetCellValue('N8', 'Học tập: '.$tuan_diem_hoctap);
-    $objPHPExcel->getActiveSheet()->SetCellValue('N9', 'Kỷ luật: '.$tuan_diem_kyluat);
-    $objPHPExcel->getActiveSheet()->SetCellValue('N10', 'Vệ sinh: '.$tuan_diem_vesinh);
-    $objPHPExcel->getActiveSheet()->SetCellValue('N11', 'Điểm trừ: '.$tuan_diem_tru);
-    $objPHPExcel->getActiveSheet()->SetCellValue('N12', 'Điểm TB của tuần: '.$tuan_diem_tb);
-    $objPHPExcel->getActiveSheet()->SetCellValue('N13', 'Đạt tuần học tốt: '.$tuan_hoctot);
-    $objPHPExcel->getActiveSheet()->SetCellValue('N14', 'Xếp thứ: '.$tuan_xepthu);
-    $objPHPExcel->getActiveSheet()->SetCellValue('N16', 'Kiến nghị của GVBM: '.$tuan_YK_GVBM);
-    $objPHPExcel->getActiveSheet()->SetCellValue('N20', 'Ý kiến GVCN: '.$tuan_YK_GVCN);
-    $objPHPExcel->getActiveSheet()->SetCellValue('N24', 'Nhận xét của BGH: '.$tuan_YK_BGH);
+    $objPHPExcel->setActiveSheetIndex(1);   
+    $r = 2;
+    $objPHPExcel->getActiveSheet()->SetCellValue('A'.$r, 'Thứ, ngày');
+    $objPHPExcel->getActiveSheet()->SetCellValue('B'.$r, 'Tiết');
+    $objPHPExcel->getActiveSheet()->SetCellValue('C'.$r, 'Môn');
+    $objPHPExcel->getActiveSheet()->SetCellValue('D'.$r, 'Tiết PPCT');
+    $objPHPExcel->getActiveSheet()->SetCellValue('E'.$r, 'Tên bài học, nội dung công việc');
+    $objPHPExcel->getActiveSheet()->SetCellValue('F'.$r, 'Học sinh vắng');
+    $objPHPExcel->getActiveSheet()->SetCellValue('G'.$r, 'Đi học muộn');
+    $objPHPExcel->getActiveSheet()->SetCellValue('H'.$r, 'Nhận xét');
+    $objPHPExcel->getActiveSheet()->SetCellValue('I'.$r, 'Điểm');
+    $objPHPExcel->getActiveSheet()->SetCellValue('I'.($r+1), 'Học tập');
+    $objPHPExcel->getActiveSheet()->SetCellValue('J'.($r+1), 'Kỷ luật');
+    $objPHPExcel->getActiveSheet()->SetCellValue('K'.($r+1), 'Vệ sinh');
+    $objPHPExcel->getActiveSheet()->SetCellValue('L'.$r, 'Tổng điểm');
+    $objPHPExcel->getActiveSheet()->SetCellValue('M'.$r, 'GV dạy kí tên');
+    $rowCount = $r+2;
 
     //Merge Cells
-    $objPHPExcel->getActiveSheet()->mergeCells('A1:F1');
-    $objPHPExcel->getActiveSheet()->mergeCells('H2:J2');
-    $objPHPExcel->getActiveSheet()->mergeCells('A2:A3');
-    $objPHPExcel->getActiveSheet()->mergeCells('B2:B3');
-    $objPHPExcel->getActiveSheet()->mergeCells('C2:C3');
-    $objPHPExcel->getActiveSheet()->mergeCells('D2:D3');
-    $objPHPExcel->getActiveSheet()->mergeCells('E2:E3');
-    $objPHPExcel->getActiveSheet()->mergeCells('F2:F3');
-    $objPHPExcel->getActiveSheet()->mergeCells('G2:G3');
-    $objPHPExcel->getActiveSheet()->mergeCells('K2:K3');
-    $objPHPExcel->getActiveSheet()->mergeCells('L2:L3');    
+    $objPHPExcel->getActiveSheet()->mergeCells('A'.($r-1).':M'.($r-1));
+    $objPHPExcel->getActiveSheet()->mergeCells('I'.$r.':K'.$r);
+    $objPHPExcel->getActiveSheet()->mergeCells('A'.$r.':A'.($r+1));
+    $objPHPExcel->getActiveSheet()->mergeCells('B'.$r.':B'.($r+1));
+    $objPHPExcel->getActiveSheet()->mergeCells('C'.$r.':C'.($r+1));
+    $objPHPExcel->getActiveSheet()->mergeCells('D'.$r.':D'.($r+1));
+    $objPHPExcel->getActiveSheet()->mergeCells('E'.$r.':E'.($r+1));
+    $objPHPExcel->getActiveSheet()->mergeCells('F'.$r.':F'.($r+1));
+    $objPHPExcel->getActiveSheet()->mergeCells('G'.$r.':G'.($r+1));
+    $objPHPExcel->getActiveSheet()->mergeCells('H'.$r.':H'.($r+1));
+    $objPHPExcel->getActiveSheet()->mergeCells('L'.$r.':L'.($r+1));    
+    $objPHPExcel->getActiveSheet()->mergeCells('M'.$r.':M'.($r+1));    
     $begin = $rowCount;
     while ($begin+1<=38){  
         $end = $begin + 4;
         $objPHPExcel->getActiveSheet()->mergeCells('A'. $begin .':A' . $end);
         $begin = $end + 1;
-    }
-    $objPHPExcel->getActiveSheet()->mergeCells('N16:N18');    
-    $objPHPExcel->getActiveSheet()->mergeCells('N20:N22');    
-    $objPHPExcel->getActiveSheet()->mergeCells('N24:N26');   
+    }    
 
     //Set Style
-    $objPHPExcel->getActiveSheet()->getStyle("A2:N2")->getFont()->setBold(true);
-    $objPHPExcel->getActiveSheet()->getStyle("H3:J3")->getFont()->setBold(true);
-    $objPHPExcel->getActiveSheet()->getStyle("A1:L38")->getAlignment()->setWrapText(true);
-    $objPHPExcel->getActiveSheet()->getStyle("A1:L38")->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
-    $objPHPExcel->getActiveSheet()->getStyle("A2:L38")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-    $objPHPExcel->getActiveSheet()->getStyle("F4:G38")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
-    $objPHPExcel->getActiveSheet()->getStyle("N2")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-    $objPHPExcel->getActiveSheet()->getStyle("N2:N38")->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP);
+    $objPHPExcel->getActiveSheet()->getStyle("A".$r.":O".$r)->getFont()->setBold(true);
+    $objPHPExcel->getActiveSheet()->getStyle("I".($r+1).":K".($r+1))->getFont()->setBold(true);
+    $objPHPExcel->getActiveSheet()->getStyle("A".($r-1).":M".($r+36))->getAlignment()->setWrapText(true);
+    $objPHPExcel->getActiveSheet()->getStyle("A".($r-1).":M".($r+36))->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+    $objPHPExcel->getActiveSheet()->getStyle("A".$r.":M".($r+36))->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+    $objPHPExcel->getActiveSheet()->getStyle("E".($r+3).":H".($r+36))->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+    $objPHPExcel->getActiveSheet()->getStyle("O".$r)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+    $objPHPExcel->getActiveSheet()->getStyle("O".$r.":O".($r+36))->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP);
 
     $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(16);
     $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(10);
-    $objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(20);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(16);
     $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(10);
-    $objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
-    $objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(45);
-    $objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(45);
-    $objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(10);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(40);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(20);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(20);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(25);
     $objPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(10);
     $objPHPExcel->getActiveSheet()->getColumnDimension('J')->setWidth(10);
-    $objPHPExcel->getActiveSheet()->getColumnDimension('K')->setWidth(14);
-    $objPHPExcel->getActiveSheet()->getColumnDimension('L')->setWidth(16);
-    $objPHPExcel->getActiveSheet()->getColumnDimension('M')->setWidth(5);
-    $objPHPExcel->getActiveSheet()->getColumnDimension('N')->setWidth(25);
-    $objPHPExcel->getActiveSheet()->getRowDimension(1)->setRowHeight(25);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('K')->setWidth(10);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('L')->setWidth(12);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('M')->setWidth(12);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('N')->setWidth(5);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('O')->setWidth(45);
+    // $objPHPExcel->getActiveSheet()->getRowDimension(1)->setRowHeight(25);
     $outline = array(
         'borders' => array(
             'outline' => array(
@@ -378,24 +349,63 @@ if ($nv_Request->isset_request('export', 'post')) {
             )
         )
     );
-    $objPHPExcel->getActiveSheet()->getStyle("A2:L38")->applyFromArray($horizontal);
-    $objPHPExcel->getActiveSheet()->getStyle("A2:L38")->applyFromArray($vertical);
-    $objPHPExcel->getActiveSheet()->getStyle("A2:F3")->applyFromArray($outline);
-    $objPHPExcel->getActiveSheet()->getStyle("G2:L3")->applyFromArray($outline);
-    $objPHPExcel->getActiveSheet()->getStyle("H2:J2")->applyFromArray($outline);
+    $objPHPExcel->getActiveSheet()->getStyle("A".$r.":M".($r+36))->applyFromArray($horizontal);
+    $objPHPExcel->getActiveSheet()->getStyle("A".$r.":M".($r+36))->applyFromArray($vertical);
+    $objPHPExcel->getActiveSheet()->getStyle("A".$r.":M".($r+1))->applyFromArray($outline);
+    $objPHPExcel->getActiveSheet()->getStyle("I".$r.":K".$r)->applyFromArray($outline);
     $begin = $rowCount;
     while ($begin+1<=38){  
         $end = $begin + 4;
-        $objPHPExcel->getActiveSheet()->getStyle('A'. $begin .':F' . $end)->applyFromArray($outline);
-        $objPHPExcel->getActiveSheet()->getStyle('G'. $begin .':L' . $end)->applyFromArray($outline);
+        $objPHPExcel->getActiveSheet()->getStyle('A'. $begin .':M' . $end)->applyFromArray($outline);
         $begin = $end + 1;
     }
     unset($styleArray);
+    
+    //Tổng kết tuần
+    $tuan_vang = '...';
+    $tuan_vang_P = '...';
+    $tuan_vang_K = '...';
+    $tuan_muon = '...';
+    $tuan_vpkhac = '...';
+    $tuan_diem_hoctap = '...';
+    $tuan_diem_kyluat = '...';
+    $tuan_diem_vesinh = '...';
+    $tuan_diem_tru= '...';
+    $tuan_diem_tb = '...';
+    $tuan_hoctot = '...';
+    $tuan_xepthu = '...';
+    $tuan_YK_GVBM = '...';
+    $tuan_YK_GVCN = '...';
+    $tuan_YK_BGH = '...';
+    $objPHPExcel->getActiveSheet()->SetCellValue('O'.$r, mb_strtoupper('Tổng kết tuần'));
+    $objPHPExcel->getActiveSheet()->SetCellValue('O'.($r+1), 'Vắng: '.$tuan_vang.', trong đó: '.$tuan_vang_P.'P; '.$tuan_vang_K.'K');
+    $objPHPExcel->getActiveSheet()->SetCellValue('O'.($r+2), 'Đi học muộn: '.$tuan_muon);
+    $objPHPExcel->getActiveSheet()->SetCellValue('O'.($r+3), 'Vi phạm khác: '.$tuan_vpkhac);
+    $objPHPExcel->getActiveSheet()->SetCellValue('O'.($r+5), 'Điểm cuối tuần: ');
+    $objPHPExcel->getActiveSheet()->SetCellValue('O'.($r+6), 'Học tập: '.$tuan_diem_hoctap);
+    $objPHPExcel->getActiveSheet()->SetCellValue('O'.($r+7), 'Kỷ luật: '.$tuan_diem_kyluat);
+    $objPHPExcel->getActiveSheet()->SetCellValue('O'.($r+8), 'Vệ sinh: '.$tuan_diem_vesinh);
+    $objPHPExcel->getActiveSheet()->SetCellValue('O'.($r+9), 'Điểm trừ: '.$tuan_diem_tru);
+    $objPHPExcel->getActiveSheet()->SetCellValue('O'.($r+10), 'Điểm TB của tuần: '.$tuan_diem_tb);
+    $objPHPExcel->getActiveSheet()->SetCellValue('O'.($r+11), 'Đạt tuần học tốt: '.$tuan_hoctot);
+    $objPHPExcel->getActiveSheet()->SetCellValue('O'.($r+12), 'Xếp thứ: '.$tuan_xepthu);
+    $objPHPExcel->getActiveSheet()->SetCellValue('O'.($r+14), 'Kiến nghị của GVBM:');
+    $objPHPExcel->getActiveSheet()->SetCellValue('O'.($r+15), $tuan_YK_GVBM);
+    $objPHPExcel->getActiveSheet()->SetCellValue('O'.($r+17), 'Ý kiến GVCN:');    
+    $objPHPExcel->getActiveSheet()->SetCellValue('O'.($r+18), $tuan_YK_GVCN);
+    $objPHPExcel->getActiveSheet()->SetCellValue('O'.($r+20), 'Nhận xét của BGH:');    
+    $objPHPExcel->getActiveSheet()->SetCellValue('O'.($r+21), $tuan_YK_BGH);
+    $objPHPExcel->getActiveSheet()->getStyle('O'.($r+14))->getFont()->setBold(true);
+    $objPHPExcel->getActiveSheet()->getStyle('O'.($r+17))->getFont()->setBold(true);
+    $objPHPExcel->getActiveSheet()->getStyle('O'.($r+20))->getFont()->setBold(true);
 
     //Đổ dữ liệu vào file excel
     
     if($manamhoc_get > 0 && $malop_get > 0 && $mabuoi_get >0 && $matuan_get >0){
         //Lấy dữ liệu
+        $query_info = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_setupinfo');
+        $data_info = $query_info->fetch(); 
+
         if($manamhoc_get) {
             $query_schoolyear = $db->query("SELECT * FROM " . NV_PREFIXLANG . "_" . $module_data . "_schoolyear WHERE manamhoc=". $manamhoc_get);              
             $data_schoolyear = $query_schoolyear->fetch();
@@ -408,26 +418,81 @@ if ($nv_Request->isset_request('export', 'post')) {
             $data_week = $query_week->fetch();
             $tuan_get = $data_week['tentuan'];
             $tuan_get_short = "Tuan" . substr($tuan_get, 7);
-
-            $title = $data_week['tentuan'].' (từ ngày: '.nv_date('d/m/Y', $data_week['tungay']). ' đến ngày: '.nv_date('d/m/Y', $data_week['denngay']) .')';
-            $objPHPExcel->getActiveSheet()->SetCellValue('A1', $title);
-            $objPHPExcel->getProperties()->setTitle("Sổ đầu bài ".$title);
         }
         
         if($malop_get){
             $query_class = $db->query("SELECT * FROM " . NV_PREFIXLANG . "_" . $module_data . "_classlist WHERE maLop=". $malop_get);              
             $data_class = $query_class->fetch();
-            $class_get = $data_class['tenlop'];    
+            $class_get = $data_class['tenlop'];   
+            
+            $query_teacher = $db->query('SELECT * FROM nv4_users WHERE userid = ' . $data_class['magvcn']);
+            $data_teacher = $query_teacher->fetch();
+            $teacher_get = $data_teacher['first_name'] . ' ' . $data_teacher['last_name'];
         }
 
         if($mabuoi_get) {
             $buoi_get = $lang_module['daystatus'.$mabuoi_get];      
             $buoi_get_short = ($mabuoi_get == 1) ? "Sang" : "Chieu";
-        }       
+        }      
 
         //Đặt tên file
         $filename = "SoDauBai_" . $class_get . "_" . $tuan_get_short . "_". $namhoc_get_short . "_" . $buoi_get_short . ".xlsx";
-    
+        $title = $data_week['tentuan'].' (từ ngày '.nv_date('d/m/Y', $data_week['tungay']). ' đến ngày '.nv_date('d/m/Y', $data_week['denngay']) .')';
+        $objPHPExcel->getActiveSheet()->SetCellValue('A'.($r-1), $title);
+        $objPHPExcel->getProperties()->setTitle("Sổ đầu bài ".$title);
+        $objPHPExcel->getActiveSheet()->setTitle($tuan_get);   
+
+        //Bìa sổ đầu bài
+        $objPHPExcel->setActiveSheetIndex(0);   
+        $objPHPExcel->getActiveSheet()->setTitle('Bìa');    
+        $objPHPExcel->getActiveSheet()->SetCellValue('A'.($r+1), (string)$data_info['tenso']);
+        $objPHPExcel->getActiveSheet()->SetCellValue('A'.($r+2), (string)$data_info['phong']);
+        $objPHPExcel->getActiveSheet()->SetCellValue('A'.($r+3), (string)$data_info['truong']);
+        $objPHPExcel->getActiveSheet()->SetCellValue('A'.($r+14), 'SỔ ĐẦU BÀI');
+        $objPHPExcel->getActiveSheet()->SetCellValue('A'.($r+19), 'Lớp: ' . $class_get);
+        $objPHPExcel->getActiveSheet()->SetCellValue('A'.($r+20), 'GVCN: ' . $teacher_get);
+        $objPHPExcel->getActiveSheet()->SetCellValue('A'.($r+35), 'Năm học: ' . $data_info['tunam'] .' - ' . $data_info['dennam']);
+
+        $objPHPExcel->getActiveSheet()->getStyle("A".$r.":G".($r+36))->applyFromArray($outline);
+        $objPHPExcel->getActiveSheet()->getStyle("H".$r.":O".($r+36))->applyFromArray($outline);
+        $objPHPExcel->getActiveSheet()->mergeCells('A'.($r+1).':G'.($r+1));
+        $objPHPExcel->getActiveSheet()->mergeCells('A'.($r+2).':G'.($r+2));
+        $objPHPExcel->getActiveSheet()->mergeCells('A'.($r+3).':G'.($r+3));
+        $objPHPExcel->getActiveSheet()->mergeCells('A'.($r+14).':G'.($r+18));
+        $objPHPExcel->getActiveSheet()->mergeCells('A'.($r+19).':G'.($r+19));
+        $objPHPExcel->getActiveSheet()->mergeCells('A'.($r+20).':G'.($r+20));
+        $objPHPExcel->getActiveSheet()->mergeCells('A'.($r+35).':G'.($r+35));
+
+        $objPHPExcel->getActiveSheet()->getStyle("A".$r.":M".($r+36))->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle("A".$r.":M".($r+36))->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle('A'.($r+3))->getFont()->setBold(true);
+        $objPHPExcel->getActiveSheet()->getStyle('A'.($r+14))->getFont()->setBold(true);
+        $objPHPExcel->getActiveSheet()->getStyle('A'.($r+1))->getFont()->setSize(14);
+        $objPHPExcel->getActiveSheet()->getStyle('A'.($r+2))->getFont()->setSize(14);
+        $objPHPExcel->getActiveSheet()->getStyle('A'.($r+3))->getFont()->setSize(16);
+        $objPHPExcel->getActiveSheet()->getStyle('A'.($r+14))->getFont()->setSize(40);
+        $objPHPExcel->getActiveSheet()->getStyle('A'.($r+19))->getFont()->setSize(20);
+        $objPHPExcel->getActiveSheet()->getStyle('A'.($r+20))->getFont()->setItalic(true);
+        $objPHPExcel->getActiveSheet()->getStyle('A'.($r+20))->getFont()->setSize(20);
+        $objPHPExcel->getActiveSheet()->getStyle('A'.($r+35))->getFont()->setSize(16);
+
+        $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(16);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(10);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(16);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(10);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(40);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(20);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(20);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(25);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(10);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('J')->setWidth(10);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('K')->setWidth(10);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('L')->setWidth(12);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('M')->setWidth(12);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('N')->setWidth(5);
+        $objPHPExcel->getActiveSheet()->getColumnDimension('O')->setWidth(45);
+        $objPHPExcel->setActiveSheetIndex(1);   
+        
         //Đổ dữ liệu vào các ô
         $currenttime = $datatungay['tungay'];
         for ($i=2; $i <= 8; $i++){  
@@ -461,32 +526,69 @@ if ($nv_Request->isset_request('export', 'post')) {
                     }
 
                     // chuyen thanh array
-                    $arrabsent = explode(",", $value['hocsinhvang']);
+                    $arrabsent1 = explode(",", $value['cophep']);
+                    $arrabsent2 = explode(",", $value['khongphep']);
                     $value['tenhocsinhnghi'] = '';
-                    $last_key = end(array_keys($arrabsent));
-                    foreach ($arrabsent as $key => $mahocsinh) {
-                        if($mahocsinh) {
+                    // lay ra may thang nghi
+                    if ($arrabsent1[0]  != 0) {
+                        $last_key1 = end(array_keys($arrabsent1));
+                        foreach ($arrabsent1 as $key => $mahocsinh) {
+                            // die('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_studentlist WHERE maHocSinh=' . $mahocsinh);
                             $queryabsent = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_studentlist WHERE maHocSinh=' . $mahocsinh);
                             $dataabsent = $queryabsent->fetch();
-                            if ($key == $last_key) {
-                                $value['tenhocsinhnghi'] .= $dataabsent['hoten'];
+                            if ($key == $last_key1) {
+                                $value['tenhocsinhnghi'] .= $dataabsent['hoten'] . ': CP';
                             } else {
                                 $value['tenhocsinhnghi'] .= $dataabsent['hoten'] . ', ';
                             }
-                        }                       
+                        }
                     }
+                    
+                    if ($arrabsent2[0]  != '') {
+                        if ($arrabsent1[0] != '')
+                            $value['tenhocsinhnghi'] .= ', ';
+                        $last_key2 = end(array_keys($arrabsent2));
+                        foreach ($arrabsent2 as $key => $mahocsinh) {
+                            // die('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_studentlist WHERE maHocSinh=' . $mahocsinh);
+                            $queryabsent = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_studentlist WHERE maHocSinh=' . $mahocsinh);
+                            $dataabsent = $queryabsent->fetch();
+                            if ($key == $last_key2) {
+                                $value['tenhocsinhnghi'] .= $dataabsent['hoten'] . ': K';
+                            } else {
+                                $value['tenhocsinhnghi'] .= $dataabsent['hoten'] . ', ';
+                            }
+                        }
+                    }
+                     
+ 
+                     $arrlate = explode(",", $value['dimuon']);
+                     $value['tenhocsinhdimuon'] = '';
+                     if($arrlate[0] != '') {
+                         $last_key3 = end(array_keys($arrlate));
+                         foreach ($arrlate as $key => $mahocsinh) {
+                             // die('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_studentlist WHERE maHocSinh=' . $mahocsinh);
+                             $querylate = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_studentlist WHERE maHocSinh=' . $mahocsinh);
+                             $datalate = $querylate->fetch();
+                             if ($key == $last_key3) {
+                                 $value['tenhocsinhdimuon'] .= $datalate['hoten'];
+                             } else {
+                                 $value['tenhocsinhdimuon'] .= $datalate['hoten'] . ', ';
+                             }
+                         }
+                     }
                     
                     $signed = $value["giaovienbmkiten"]?"Đã ký":"";       
                     $objPHPExcel->getActiveSheet()->SetCellValue('C'.$rowCount, $value["tenmonhoc"]);
                     $objPHPExcel->getActiveSheet()->SetCellValue('D'.$rowCount, $tietppct);
-                    $objPHPExcel->getActiveSheet()->SetCellValue('E'.$rowCount, $value['tenhocsinhnghi']);
-                    $objPHPExcel->getActiveSheet()->SetCellValue('F'.$rowCount, $tenbaihoc);
-                    $objPHPExcel->getActiveSheet()->SetCellValue('G'.$rowCount, $nhanxet);
-                    $objPHPExcel->getActiveSheet()->SetCellValue('H'.$rowCount, $diemhoctap);
-                    $objPHPExcel->getActiveSheet()->SetCellValue('I'.$rowCount, $diemkyluat);
-                    $objPHPExcel->getActiveSheet()->SetCellValue('J'.$rowCount, $diemvesinh);
-                    $objPHPExcel->getActiveSheet()->SetCellValue('K'.$rowCount, $tongdiem);
-                    $objPHPExcel->getActiveSheet()->SetCellValue('L'.$rowCount, $signed); 
+                    $objPHPExcel->getActiveSheet()->SetCellValue('E'.$rowCount, $tenbaihoc);
+                    $objPHPExcel->getActiveSheet()->SetCellValue('F'.$rowCount, $value['tenhocsinhnghi']);
+                    $objPHPExcel->getActiveSheet()->SetCellValue('G'.$rowCount, $value['tenhocsinhdimuon']);
+                    $objPHPExcel->getActiveSheet()->SetCellValue('H'.$rowCount, $nhanxet);
+                    $objPHPExcel->getActiveSheet()->SetCellValue('I'.$rowCount, $diemhoctap);
+                    $objPHPExcel->getActiveSheet()->SetCellValue('J'.$rowCount, $diemkyluat);
+                    $objPHPExcel->getActiveSheet()->SetCellValue('K'.$rowCount, $diemvesinh);
+                    $objPHPExcel->getActiveSheet()->SetCellValue('L'.$rowCount, $tongdiem);
+                    $objPHPExcel->getActiveSheet()->SetCellValue('M'.$rowCount, $signed); 
                 }  
                 ++$rowCount; 
             } 
