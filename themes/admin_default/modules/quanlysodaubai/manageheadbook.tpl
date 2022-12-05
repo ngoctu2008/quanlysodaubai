@@ -106,6 +106,7 @@
 		</div>
     <div class="text-center">
         <input class="btn btn-primary" type="submit" name="btnsubmit" value="{LANG.week_summary}">
+        <input class="btn btn-success" type="submit" name="export" value="{LANG.export_headbook}">
     </div>
 	</form>
 <!-- END: manageheadbook -->
