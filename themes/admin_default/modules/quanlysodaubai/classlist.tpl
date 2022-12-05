@@ -29,6 +29,6 @@
     </table>
     <div class="form-group">
     <a href="{PAGE_ADDCLASS}" class="btn btn-primary">{LANG.add}</a>
-</div>
+    </div>
 </div>
 <!-- END: classlist -->

@@ -157,6 +157,35 @@ $lang_module['namhoc3'] = '2022 - 2023';
 $lang_module['add_headbook'] = 'Thêm sổ đầu bài';
 $lang_module['edit_headbook'] = 'Chỉnh sửa sổ đầu bài';
 
+$lang_module['week_display'] = 'Hiển Thị Tuần';
+
+
+$lang_module['manageweek'] = 'Quản lý tuần';
+$lang_module['manageschoolyear'] = 'Quản lý năm học';
+
+$lang_module['addweek'] = 'Thêm tuần';
+$lang_module['editweek'] = 'Chỉnh sửa tuần';
+$lang_module['schoolyearlist'] = 'Danh sách năm học';
+$lang_module['weeklist'] = 'Danh sách tuần';
+
+$lang_module['starttime'] = 'Thời gian bắt đầu (dự kiến)';
+$lang_module['finishtime'] = 'Thời gian kết thúc (dự kiến)';
+
+$lang_module['weekname'] = 'Tên tuần';
+$lang_module['fromday'] = 'Từ ngày';
+$lang_module['today'] = 'Đến ngày   ';
+$lang_module['desc'] = 'Mô tả';
+$lang_module['validate'] = 'Hiệu lực';
+
+$lang_module['daystatus1'] = 'Buổi Sáng';
+$lang_module['daystatus2'] = 'Buổi Chiều';
+
+
+
+
+
+
+
 
 
 

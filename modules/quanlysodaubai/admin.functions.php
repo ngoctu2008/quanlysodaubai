@@ -29,6 +29,13 @@ $allow_func = array(
     'manageheadbook',
     'addheadbook',
     'delheadbook',
+    'import_ppct',
+    'weeklist',
+    'schoolyearlist',
+    'addweek',
+    'delschoolyear',
+    'change_active',
+    'editweek'
     'classdiagram',
     'configclassdiagram',
     'import_ppct'

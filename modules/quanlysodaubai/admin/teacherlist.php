@@ -19,6 +19,14 @@ $xtpl = new XTemplate('teacherlist.tpl', NV_ROOTDIR . '/themes/' . $global_confi
 $xtpl->assign('LANG', $lang_module);
 $xtpl->assign('GLANG', $lang_global);
 
+for ($i=0; $i < 4; $i++) { 
+    $xtpl->assign('DAY', $i);
+    for ($j=0; $j < 4; $j++) { 
+        $xtpl->assign('LESSON', $j);
+        $xtpl->parse('teacherlist.loopday.looplesson');
+    }
+    $xtpl->parse('teacherlist.loopday');
+}
 
 $xtpl->parse('teacherlist');
 $contents = $xtpl->text('teacherlist');
