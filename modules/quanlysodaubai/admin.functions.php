@@ -29,7 +29,14 @@ $allow_func = array(
     'manageheadbook',
     'addheadbook',
     'delheadbook',
-    'import_ppct'
+    'import_ppct',
+    'weeklist',
+    'schoolyearlist',
+    'addweek',
+    'delschoolyear',
+    'change_active',
+    'editweek'
+
 );
 
 define('NV_IS_FILE_ADMIN', true);

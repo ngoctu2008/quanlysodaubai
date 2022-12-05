@@ -30,12 +30,12 @@ function nv_del_student(studentid, classid, checkss) {
 	return false;
 }
 
-function nv_del_headbook(masodaubai, checkss) {
+function nv_del_headbook(masodaubai, manamhoc, matuan, malop, mabuoi, checkss) {
 	if (confirm(nv_is_del_confirm[0])) {
 		$.post(script_name + '?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=delheadbook&nocache=' + new Date().getTime(), 'masodaubai=' + masodaubai + '&checkss=' + checkss, function(res) {
 			var r_split = res.split("_");
 			if (r_split[0] == 'OK') {
-				window.location.href = script_name + '?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=manageheadbook';
+				window.location.href = script_name + '?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=manageheadbook&manamhoc=' + manamhoc +'&matuan='+ matuan+'&malop='+malop+'&mabuoi='+mabuoi;
 			} else if (r_split[0] == 'ERR') {
 				alert(r_split[1]);
 			} else {
@@ -45,6 +45,23 @@ function nv_del_headbook(masodaubai, checkss) {
 	}
 	return false;
 }
+
+function nv_del_schoolyear(manamhoc, checkss) {
+	if (confirm(nv_is_del_confirm[0])) {
+		$.post(script_name + '?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=delschoolyear&nocache=' + new Date().getTime(), 'manamhoc=' + manamhoc + '&checkss=' + checkss, function(res) {
+			var r_split = res.split("_");
+			if (r_split[0] == 'OK') {
+				window.location.href = script_name + '?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=schoolyearlist';
+			} else if (r_split[0] == 'ERR') {
+				alert(r_split[1]);
+			} else {
+				alert(nv_is_del_confirm[2]);
+			}
+		});
+	}
+	return false;
+}
+
 
 function nv_del_subject(subjectid, checkss) {
 	if (confirm(nv_is_del_confirm[0])) {
@@ -60,4 +77,43 @@ function nv_del_subject(subjectid, checkss) {
 		});
 	}
 	return false;
+}
+
+function nv_change_active_week(matuan) {
+	var new_status = $('#change_active_week_' + matuan).is(':checked') ? 1 : 0;
+	if (confirm(nv_is_change_act_confirm[0])) {
+			var nv_timer = nv_settimeout_disable('change_active_week_' + matuan, 3000);
+			$.post(script_name + '?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=change_active&nocache=' + new Date().getTime(), 'change_active=1&matuan=' + matuan + '&new_status=' + new_status, function(res) {
+
+			});
+	} else {
+			$('#change_active_' + matuan).prop('checked', new_status ? false : true);
+	}
+}
+
+function change_subject() {
+	var mamonhoc = $('#subject').val();
+	$.ajax({url: script_name + '?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=addheadbook&change_subject=1&mamonhoc=' + mamonhoc, success: function(result){
+		if (result != 'ERR') {
+			$('#name_lesson').html(result);
+		}
+  }});
+}
+
+function change_name_lesson() {
+	var mappct = $('#name_lesson').val();
+	$.ajax({url: script_name + '?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=addheadbook&change_name_lesson=1&mappct=' + mappct, success: function(result){
+		if (result != 'ERR') {
+			$("#lesson_number").val(result);
+		}
+  }});
+}
+
+function change_schoolyear() {
+	var manamhoc = $('#schoolyear').val();
+	$.ajax({url: script_name + '?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=manageheadbook&change_schoolyear=1&manamhoc=' + manamhoc, success: function(result){
+		if (result != 'ERR') {
+			$("#week").append(result);
+		}
+  }});
 }
