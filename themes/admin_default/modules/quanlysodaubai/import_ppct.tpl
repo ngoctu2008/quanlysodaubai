@@ -16,10 +16,9 @@
 				<table class="table table-striped table-bordered table-hover">
 					<tbody>
 						<tr>
-							<td class="text-right">{LANG.namhoc} <sup class="required">(*)</sup><br><small class="text-danger">{LANG.require_select}</small></td>
+							<td class="text-right">{LANG.schoolyear} <sup class="required">(*)</sup><br><small class="text-danger">{LANG.require_select}</small></td>
 							<td>
-								<select class="form-control w200" name="subject_{DATA_SCHOOLYEAR.key}>
-									<option value="0" selected>Chọn năm học</option>
+								<select class="form-control w200" name="schoolyear_{DATA_SCHOOLYEAR.key}">
 									<!-- BEGIN: loopschoolyear -->
 									<option value="{DATA_SCHOOLYEAR.key}" {DATA_SCHOOLYEAR.selected}>{DATA_SCHOOLYEAR.title}</option>
 									<!-- END: loopschoolyear -->

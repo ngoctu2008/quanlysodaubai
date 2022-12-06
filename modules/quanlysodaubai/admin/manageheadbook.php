@@ -344,11 +344,10 @@ if ($nv_Request->isset_request('export', 'post')) {
     $objPHPExcel->getActiveSheet()->getColumnDimension('M')->setWidth(12);
     $objPHPExcel->getActiveSheet()->getColumnDimension('N')->setWidth(5);
     $objPHPExcel->getActiveSheet()->getColumnDimension('O')->setWidth(45);
-    // $objPHPExcel->getActiveSheet()->getRowDimension(1)->setRowHeight(25);
     $outline = array(
         'borders' => array(
             'outline' => array(
-            'style' => PHPExcel_Style_Border::BORDER_THICK
+            'style' => PHPExcel_Style_Border::BORDER_THIN
             )
         )
     );
@@ -362,7 +361,7 @@ if ($nv_Request->isset_request('export', 'post')) {
     $vertical = array(
         'borders' => array(
             'vertical' => array(
-            'style' => PHPExcel_Style_Border::BORDER_THICK 
+            'style' => PHPExcel_Style_Border::BORDER_THIN 
             )
         )
     );
@@ -470,8 +469,15 @@ if ($nv_Request->isset_request('export', 'post')) {
         $objPHPExcel->getActiveSheet()->SetCellValue('A'.($r+20), 'GVCN: ' . $teacher_get);
         $objPHPExcel->getActiveSheet()->SetCellValue('A'.($r+35), 'Năm học: ' . $data_info['tunam'] .' - ' . $data_info['dennam']);
 
-        $objPHPExcel->getActiveSheet()->getStyle("A".$r.":G".($r+36))->applyFromArray($outline);
-        $objPHPExcel->getActiveSheet()->getStyle("H".$r.":O".($r+36))->applyFromArray($outline);
+        $outline_thick = array(
+            'borders' => array(
+                'outline' => array(
+                'style' => PHPExcel_Style_Border::BORDER_THICK
+                )
+            )
+        );
+        $objPHPExcel->getActiveSheet()->getStyle("A".$r.":G".($r+36))->applyFromArray($outline_thick);
+        $objPHPExcel->getActiveSheet()->getStyle("H".$r.":O".($r+36))->applyFromArray($outline_thick);
         $objPHPExcel->getActiveSheet()->mergeCells('A'.($r+1).':G'.($r+1));
         $objPHPExcel->getActiveSheet()->mergeCells('A'.($r+2).':G'.($r+2));
         $objPHPExcel->getActiveSheet()->mergeCells('A'.($r+3).':G'.($r+3));
