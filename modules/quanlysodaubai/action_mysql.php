@@ -86,7 +86,7 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
 //Phân phối chương trình
 $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ppct (
 id int(11) NOT NULL AUTO_INCREMENT,
-namHoc varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+manamhoc int(11) DEFAULT NULL,
 khoi int(2) NOT NULL,
 maMonHoc int(11) DEFAULT NULL,
 tiet int(5) NOT NULL,

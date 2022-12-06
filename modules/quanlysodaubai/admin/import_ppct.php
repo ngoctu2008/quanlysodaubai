@@ -53,6 +53,7 @@ while ($row = $queryschoolyear->fetch()) {
 	}
 	$i++;
 }
+
 if(!empty($arrayschoolyear)) { 
 	foreach ($arrayschoolyear as $value) {
 		$value['key'] = $value['manamhoc'];
@@ -91,6 +92,12 @@ if(!empty($arrayschoolyear)) {
 	}
 }	
 
+if($manamhoc) {
+	$query_schoolyear = $db->query("SELECT * FROM " . NV_PREFIXLANG . "_" . $module_data . "_schoolyear WHERE manamhoc=". $manamhoc);              
+	$data_schoolyear = $query_schoolyear->fetch();
+	$namhoc = $data_schoolyear['tunam'] . ' - ' . $data_schoolyear['dennam'];
+}
+
 // Khi nhấn Import
 if ($nv_Request->isset_request('do', 'post')) {
 	if (isset($_FILES['ufile']) && is_uploaded_file($_FILES['ufile']['tmp_name'])) {
@@ -119,21 +126,22 @@ if ($nv_Request->isset_request('do', 'post')) {
 						$data[] = $dataRow;
 		            }	
 							
-		            // Bắt đầu import vào database
-					$db->query('DELETE FROM ' . NV_PREFIXLANG . '_' . $module_data . '_ppct WHERE mamonhoc = ' . $mamonhoc . ' AND namhoc = "' . $namhoc . '" AND khoi = ' . $khoi);	
+		            // Bắt đầu import vào database		
+					$db->query('DELETE FROM ' . NV_PREFIXLANG . '_' . $module_data . '_ppct WHERE mamonhoc = ' . $mamonhoc . ' AND manamhoc = ' . $manamhoc . ' AND khoi = ' . $khoi);	
 					for($i = 1; $i <= $highestRow - 1; $i++) {
 						$tiet = $data[$i][0][0];
 						$tenbaihoc = $data[$i][0][1];	
 						$_sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_ppct
-							(namHoc, khoi, maMonHoc, tiet, tenBaiHoc) VALUES
-							(:namhoc, :khoi, :mamonhoc, :tiet, :tenbaihoc)';						
+							(manamhoc, khoi, maMonHoc, tiet, tenBaiHoc) VALUES
+							(:manamhoc, :khoi, :mamonhoc, :tiet, :tenbaihoc)';						
 						$sth = $db->prepare($_sql);
-						$sth->bindParam(':namhoc', $namhoc, PDO::PARAM_STR);
+						$sth->bindParam(':manamhoc', $manamhoc, PDO::PARAM_INT);
 						$sth->bindParam(':khoi', $khoi, PDO::PARAM_INT);
 						$sth->bindParam(':mamonhoc', $mamonhoc, PDO::PARAM_INT);
 						$sth->bindParam(':tiet', $tiet, PDO::PARAM_INT);
 						$sth->bindParam(':tenbaihoc', $tenbaihoc, PDO::PARAM_INT);
 						$sth->execute();
+						// die($sth);
 					}	
 					$success = $lang_module['import_success'];
 					unlink($file);
@@ -165,6 +173,11 @@ if ($nv_Request->isset_request('showall', 'post')) {
 			$query_selected_subject = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_subjectlist WHERE mamonhoc = ' . $value['mamonhoc'] );
 			$row_selected_subject = $query_selected_subject->fetch();
 			$value['monhoc'] = $row_selected_subject['tenmonhoc'];
+
+			$query_schoolyear = $db->query("SELECT * FROM " . NV_PREFIXLANG . "_" . $module_data . "_schoolyear WHERE manamhoc=". $value['manamhoc']);              
+			$data_schoolyear = $query_schoolyear->fetch();
+			$value['namhoc'] = $data_schoolyear['tunam'] . ' - ' . $data_schoolyear['dennam'];
+
 			$xtpl->assign('DATA', $value);
 			$xtpl->parse('main.show.loop');
 		}
@@ -175,7 +188,7 @@ if ($nv_Request->isset_request('showall', 'post')) {
 // Khi nhấn Xem
 if ($nv_Request->isset_request('show', 'post')) {
 	// Gọi csdl để lấy dữ liệu
-	$query = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_ppct WHERE mamonhoc = ' . $mamonhoc . ' AND namhoc = "' . $namhoc . '" AND khoi = ' . $khoi);
+	$query = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_ppct WHERE mamonhoc = ' . $mamonhoc . ' AND manamhoc = "' . $manamhoc . '" AND khoi = ' . $khoi);
 	// Đổ dữ liệu
 	while ($row = $query->fetch()) {
 		$array[$row['id']] = $row;
@@ -185,9 +198,14 @@ if ($nv_Request->isset_request('show', 'post')) {
 		$i = 1;
 		foreach ($array as $value) {
 			$value['stt'] = $i++;
-			$query_selected_subject = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_subjectlist WHERE mamonhoc = ' . $value['mamonhoc'] );
+			$query_selected_subject = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_subjectlist WHERE mamonhoc = ' . $value['mamonhoc']);
 			$row_selected_subject = $query_selected_subject->fetch();
 			$value['monhoc'] = $row_selected_subject['tenmonhoc'];
+
+			$query_schoolyear = $db->query("SELECT * FROM " . NV_PREFIXLANG . "_" . $module_data . "_schoolyear WHERE manamhoc=". $value['manamhoc']);              
+			$data_schoolyear = $query_schoolyear->fetch();
+			$value['namhoc'] = $data_schoolyear['tunam'] . ' - ' . $data_schoolyear['dennam'];
+
 			$xtpl->assign('DATA', $value);
 			$xtpl->parse('main.show.loop');
 		}
@@ -196,12 +214,12 @@ if ($nv_Request->isset_request('show', 'post')) {
 }
 
 if ($nv_Request->isset_request('del', 'post')) {
-	$query = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_ppct WHERE mamonhoc = ' . $mamonhoc . ' AND namhoc = "' . $namhoc . '" AND khoi = ' . $khoi);		
+	$query = $db->query('SELECT * FROM ' . NV_PREFIXLANG . '_' . $module_data . '_ppct WHERE mamonhoc = ' . $mamonhoc . ' AND manamhoc = "' . $manamhoc . '" AND khoi = ' . $khoi);		
 	while ($row = $query->fetch()) {
 		$array[$row['malop']] = $row;
 	}
 	if($array) {
-		$db->query('DELETE FROM ' . NV_PREFIXLANG . '_' . $module_data . '_ppct WHERE mamonhoc = ' . $mamonhoc . ' AND namhoc = "' . $namhoc . '" AND khoi = ' . $khoi);		
+		$db->query('DELETE FROM ' . NV_PREFIXLANG . '_' . $module_data . '_ppct WHERE mamonhoc = ' . $mamonhoc . ' AND manamhoc = "' . $manamhoc . '" AND khoi = ' . $khoi);		
 		$success = $lang_module['delete_success'];
 	}
 	else
